@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.guangbo.dao.entity.NewsBack" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="ip" property="ip" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="TINYINT" />
     <result column="repay_time" property="repayTime" jdbcType="TIMESTAMP" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, news_id, ip, type, repay_time
+    id, news_id, user_id, ip, type, repay_time
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -124,12 +125,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.guangbo.dao.entity.NewsBack" >
-    insert into news_back (id, news_id, ip, 
-      type, repay_time, content
-      )
-    values (#{id,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER}, #{ip,jdbcType=INTEGER}, 
-      #{type,jdbcType=TINYINT}, #{repayTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
-      )
+    insert into news_back (id, news_id, user_id, 
+      ip, type, repay_time, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{ip,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{repayTime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.guangbo.dao.entity.NewsBack" >
     insert into news_back
@@ -139,6 +140,9 @@
       </if>
       <if test="newsId != null" >
         news_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
       </if>
       <if test="ip != null" >
         ip,
@@ -159,6 +163,9 @@
       </if>
       <if test="newsId != null" >
         #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="ip != null" >
         #{ip,jdbcType=INTEGER},
@@ -189,6 +196,9 @@
       <if test="record.newsId != null" >
         news_id = #{record.newsId,jdbcType=INTEGER},
       </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
       <if test="record.ip != null" >
         ip = #{record.ip,jdbcType=INTEGER},
       </if>
@@ -210,6 +220,7 @@
     update news_back
     set id = #{record.id,jdbcType=INTEGER},
       news_id = #{record.newsId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       ip = #{record.ip,jdbcType=INTEGER},
       type = #{record.type,jdbcType=TINYINT},
       repay_time = #{record.repayTime,jdbcType=TIMESTAMP},
@@ -222,6 +233,7 @@
     update news_back
     set id = #{record.id,jdbcType=INTEGER},
       news_id = #{record.newsId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       ip = #{record.ip,jdbcType=INTEGER},
       type = #{record.type,jdbcType=TINYINT},
       repay_time = #{record.repayTime,jdbcType=TIMESTAMP}
@@ -234,6 +246,9 @@
     <set >
       <if test="newsId != null" >
         news_id = #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="ip != null" >
         ip = #{ip,jdbcType=INTEGER},
@@ -253,6 +268,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.guangbo.dao.entity.NewsBack" >
     update news_back
     set news_id = #{newsId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
       ip = #{ip,jdbcType=INTEGER},
       type = #{type,jdbcType=TINYINT},
       repay_time = #{repayTime,jdbcType=TIMESTAMP},
@@ -262,6 +278,7 @@
   <update id="updateByPrimaryKey" parameterType="com.guangbo.dao.entity.NewsBack" >
     update news_back
     set news_id = #{newsId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
       ip = #{ip,jdbcType=INTEGER},
       type = #{type,jdbcType=TINYINT},
       repay_time = #{repayTime,jdbcType=TIMESTAMP}
