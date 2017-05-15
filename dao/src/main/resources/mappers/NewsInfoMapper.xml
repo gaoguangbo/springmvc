@@ -9,7 +9,9 @@
     <result column="region_id" property="regionId" jdbcType="INTEGER" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
     <result column="clicktimes" property="clicktimes" jdbcType="INTEGER" />
+    <result column="repaytimes" property="repaytimes" jdbcType="INTEGER" />
     <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.guangbo.dao.entity.NewsInfo" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
@@ -73,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, author_id, title, type_id, region_id, keywords, clicktimes, pic_url
+    id, author_id, title, type_id, region_id, keywords, clicktimes, repaytimes, pic_url, 
+    create_time
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -129,12 +132,12 @@
   <insert id="insert" parameterType="com.guangbo.dao.entity.NewsInfo" >
     insert into news_info (id, author_id, title, 
       type_id, region_id, keywords, 
-      clicktimes, pic_url, content
-      )
+      clicktimes, repaytimes, pic_url, 
+      create_time, content)
     values (#{id,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{typeId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{keywords,jdbcType=VARCHAR}, 
-      #{clicktimes,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{clicktimes,jdbcType=INTEGER}, #{repaytimes,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.guangbo.dao.entity.NewsInfo" >
     insert into news_info
@@ -160,8 +163,14 @@
       <if test="clicktimes != null" >
         clicktimes,
       </if>
+      <if test="repaytimes != null" >
+        repaytimes,
+      </if>
       <if test="picUrl != null" >
         pic_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
       </if>
       <if test="content != null" >
         content,
@@ -189,8 +198,14 @@
       <if test="clicktimes != null" >
         #{clicktimes,jdbcType=INTEGER},
       </if>
+      <if test="repaytimes != null" >
+        #{repaytimes,jdbcType=INTEGER},
+      </if>
       <if test="picUrl != null" >
         #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -227,8 +242,14 @@
       <if test="record.clicktimes != null" >
         clicktimes = #{record.clicktimes,jdbcType=INTEGER},
       </if>
+      <if test="record.repaytimes != null" >
+        repaytimes = #{record.repaytimes,jdbcType=INTEGER},
+      </if>
       <if test="record.picUrl != null" >
         pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
@@ -247,7 +268,9 @@
       region_id = #{record.regionId,jdbcType=INTEGER},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       clicktimes = #{record.clicktimes,jdbcType=INTEGER},
+      repaytimes = #{record.repaytimes,jdbcType=INTEGER},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -262,7 +285,9 @@
       region_id = #{record.regionId,jdbcType=INTEGER},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       clicktimes = #{record.clicktimes,jdbcType=INTEGER},
-      pic_url = #{record.picUrl,jdbcType=VARCHAR}
+      repaytimes = #{record.repaytimes,jdbcType=INTEGER},
+      pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -288,8 +313,14 @@
       <if test="clicktimes != null" >
         clicktimes = #{clicktimes,jdbcType=INTEGER},
       </if>
+      <if test="repaytimes != null" >
+        repaytimes = #{repaytimes,jdbcType=INTEGER},
+      </if>
       <if test="picUrl != null" >
         pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
@@ -305,7 +336,9 @@
       region_id = #{regionId,jdbcType=INTEGER},
       keywords = #{keywords,jdbcType=VARCHAR},
       clicktimes = #{clicktimes,jdbcType=INTEGER},
+      repaytimes = #{repaytimes,jdbcType=INTEGER},
       pic_url = #{picUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -317,7 +350,9 @@
       region_id = #{regionId,jdbcType=INTEGER},
       keywords = #{keywords,jdbcType=VARCHAR},
       clicktimes = #{clicktimes,jdbcType=INTEGER},
-      pic_url = #{picUrl,jdbcType=VARCHAR}
+      repaytimes = #{repaytimes,jdbcType=INTEGER},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

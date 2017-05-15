@@ -50,8 +50,8 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		  <!--<table tableName="news_info" domainObjectName="NewsInfo"/>-->
-		<table tableName="news_back" domainObjectName="NewsBack" />
+		  <table tableName="news_info" domainObjectName="NewsInfo"/>
+		<!--<table tableName="news_back" domainObjectName="NewsBack" />-->
 	</context>
 
 </generatorConfiguration> 

@@ -1,9 +1,12 @@
 package com.guangbo.dao.entity;
 
+import com.guangbo.dao.po.PageInfoPO;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class NewsInfoExample {
+public class NewsInfoExample extends PageInfoPO<NewsInfo>{
     protected String orderByClause;
 
     protected boolean distinct;
@@ -544,6 +547,66 @@ public class NewsInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andRepaytimesIsNull() {
+            addCriterion("repaytimes is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesIsNotNull() {
+            addCriterion("repaytimes is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesEqualTo(Integer value) {
+            addCriterion("repaytimes =", value, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesNotEqualTo(Integer value) {
+            addCriterion("repaytimes <>", value, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesGreaterThan(Integer value) {
+            addCriterion("repaytimes >", value, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesGreaterThanOrEqualTo(Integer value) {
+            addCriterion("repaytimes >=", value, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesLessThan(Integer value) {
+            addCriterion("repaytimes <", value, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesLessThanOrEqualTo(Integer value) {
+            addCriterion("repaytimes <=", value, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesIn(List<Integer> values) {
+            addCriterion("repaytimes in", values, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesNotIn(List<Integer> values) {
+            addCriterion("repaytimes not in", values, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesBetween(Integer value1, Integer value2) {
+            addCriterion("repaytimes between", value1, value2, "repaytimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepaytimesNotBetween(Integer value1, Integer value2) {
+            addCriterion("repaytimes not between", value1, value2, "repaytimes");
+            return (Criteria) this;
+        }
+
         public Criteria andPicUrlIsNull() {
             addCriterion("pic_url is null");
             return (Criteria) this;
@@ -611,6 +674,66 @@ public class NewsInfoExample {
 
         public Criteria andPicUrlNotBetween(String value1, String value2) {
             addCriterion("pic_url not between", value1, value2, "picUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("create_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("create_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("create_time =", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("create_time <>", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("create_time >", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_time >=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("create_time <", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("create_time <=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("create_time in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("create_time not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("create_time between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
     }

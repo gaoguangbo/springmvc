@@ -1,6 +1,7 @@
 package com.guangbo.dao.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class NewsInfo implements Serializable {
     private Integer id;
@@ -17,7 +18,11 @@ public class NewsInfo implements Serializable {
 
     private Integer clicktimes;
 
+    private Integer repaytimes;
+
     private String picUrl;
+
+    private Date createTime;
 
     private String content;
 
@@ -79,12 +84,28 @@ public class NewsInfo implements Serializable {
         this.clicktimes = clicktimes;
     }
 
+    public Integer getRepaytimes() {
+        return repaytimes;
+    }
+
+    public void setRepaytimes(Integer repaytimes) {
+        this.repaytimes = repaytimes;
+    }
+
     public String getPicUrl() {
         return picUrl;
     }
 
     public void setPicUrl(String picUrl) {
         this.picUrl = picUrl == null ? null : picUrl.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getContent() {
