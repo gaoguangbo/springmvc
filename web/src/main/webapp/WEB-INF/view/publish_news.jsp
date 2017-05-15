@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
@@ -5,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-    <link rel="stylesheet" type="text/css" href="./style/login/common.css">
+    <link rel="stylesheet" type="text/css" href="../../style/login/common.css">
     <title>增加信息</title>
-    <link rel="stylesheet" type="text/css" href="./css/wangEditor.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/wangEditor.min.css">
     <style type="text/css">
         /*富文本开始*/
         #content {
@@ -35,7 +36,7 @@
         }
     </style>
 </head>
-<script src="./data/html/setday.js"></script>
+<script src="../../data/html/setday.js"></script>
 <script>
     function bs() {
         var f = document.add
@@ -65,7 +66,7 @@
     window.onload = function () {
     }
 </script>
-<script src="./data/html/postinfo.js"></script>
+<script src="../../data/html/postinfo.js"></script>
 <body class="body_index">
 <style type="text/css">
     #browser_err {
@@ -131,7 +132,7 @@
                             </li>
                             <li class="new_logout">
                                 <i class=""></i>
-                                <a href="./e/member/doaction.php?enews=exit" onclick="return confirm('确认要退出?');">退出</a>
+                                <a href="../../e/member/doaction.php?enews=exit" onclick="return confirm('确认要退出?');">退出</a>
                             </li>
                         </ul>
                     </div>
@@ -144,7 +145,7 @@
     <div class="wrap1 sclearfix">
         <div class="menu">
             <div class="menu_block">
-                <a href="./e/member/cp/" class="menu_h1 selected menu_main alone"><i></i>主页</a>
+                <a href="../../e/member/cp" class="menu_h1 selected menu_main alone"><i></i>主页</a>
             </div>
             <div class="menu_block">
                 <a class="menu_h1 menu_article"><i></i>文章管理</a>
@@ -163,10 +164,10 @@
             </div>-->
             <div class="menu_block">
                 <a class="menu_h1 menu_settings"><i></i>设置</a>
-                <a href="./e/member/EditInfo/" class="menu_h2 menu_account"><i></i>修改资料</a>
-                <a href="./e/member/EditInfo/EditSafeInfo.php" class="menu_h2 "><i></i>修改密码</a>
-                <a href="./e/member/my/" class="menu_h2 "><i></i>账号状态</a>
-                <a href="./e/member/friend/" class="menu_h2 "><i></i>好友列表</a>
+                <a href="../../e/member/EditInfo" class="menu_h2 menu_account"><i></i>修改资料</a>
+                <a href="../../e/member/EditInfo/EditSafeInfo.php" class="menu_h2 "><i></i>修改密码</a>
+                <a href="../../e/member/my" class="menu_h2 "><i></i>账号状态</a>
+                <a href="../../e/member/friend" class="menu_h2 "><i></i>好友列表</a>
                 <a href="./e/memberconnect/ListBind.php" class="menu_h2 "><i></i>绑定外部登录</a>
             </div>
         </div>
@@ -277,8 +278,8 @@
 <div id="backtop"></div>
 
 
-<script type="text/javascript" src="./js/lib/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="./js/wangEditor.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../../js/wangEditor.js"></script>
 <!--<script type="text/javascript" src="../dist/js/wangEditor.min.js"></script>-->
 <script type="text/javascript">
     // 阻止输出log

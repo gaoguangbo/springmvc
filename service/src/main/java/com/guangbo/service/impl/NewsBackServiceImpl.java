@@ -6,6 +6,8 @@ import com.guangbo.dao.mapper.NewsBackMapper;
 import com.guangbo.dao.po.PageInfoPO;
 import com.guangbo.service.INewsBackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  * Created by gaoguangbo on 2017/5/14.
  * 新闻评论 、 评论回帖服务
  */
+@Service
 public class NewsBackServiceImpl implements INewsBackService {
     @Autowired
     private NewsBackMapper newsBackMapper;
@@ -41,7 +44,22 @@ public class NewsBackServiceImpl implements INewsBackService {
         return 0;
     }
 
-    public PageInfoPO<NewsBack> queryByPage(NewsBack record, int startLimit, int endLimit) {
-        return null;
+    public PageInfoPO<NewsBack> queryByPage(NewsBack record, int pageNum, int pageSize) {
+        NewsBackExample example = new NewsBackExample();
+        NewsBackExample.Criteria criteria = example.createCriteria();
+        if (!ObjectUtils.isEmpty(record.getNewsId())) {
+            criteria.andNewsIdEqualTo(record.getNewsId());
+        }
+        if (!ObjectUtils.isEmpty(record.getUserId())) {
+            criteria.andNewsIdEqualTo(record.getUserId());
+        }
+        if (!ObjectUtils.isEmpty(record.getType())) {
+            criteria.andTypeEqualTo(record.getType());
+        }
+        example.setPageNum(pageNum,pageSize);
+        PageInfoPO<NewsBack> res = new NewsBackExample();
+        res.setPageNum(pageNum, pageSize);
+        res.setResults(newsBackMapper.selectByExampleByPage(example));
+        return res;
     }
 }

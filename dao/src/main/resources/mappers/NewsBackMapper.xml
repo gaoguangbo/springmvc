@@ -284,4 +284,21 @@
       repay_time = #{repayTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByExampleByPage" resultMap="BaseResultMap" parameterType="com.guangbo.dao.entity.NewsBackExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from news_back
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test=" startLimit != null">
+      limit ${startLimit},${pageSize}
+    </if>
+  </select>
 </mapper>

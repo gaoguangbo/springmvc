@@ -1,10 +1,12 @@
 package com.guangbo.dao.entity;
 
+import com.guangbo.dao.po.PageInfoPO;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class NewsBackExample {
+public class NewsBackExample extends PageInfoPO<NewsBack>{
     protected String orderByClause;
 
     protected boolean distinct;
