@@ -290,6 +290,8 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from news_back
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

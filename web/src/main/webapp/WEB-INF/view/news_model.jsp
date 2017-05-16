@@ -34,6 +34,7 @@
     <script type="text/javascript" charset="gb2312" src="../../source1/qrcode.min_1dc0697.js"></script>
     <script type="text/javascript" charset="gb2312" src="../../source1/asyncmap_2c7ae8b.js"></script>
     <script src="../../source1/share.js"></script>
+    <script type="text/javascript" src="../../js/lib/jquery-1.10.2.min.js"></script>
     <link rel="stylesheet" href="../../source1/share_style0_16.css">
 </head>
 <body class="v2016" youdao="bind">
@@ -241,28 +242,28 @@
     </div>
 </div>
 
-    <div id="container" class="clearfix">
-        <div class="detail-main">
-            <div id="pagelet-article">
-                <!--导航栏-->
-                <div class="curpos">
-                    <a href="http://a285.wangzhanyanshi.com/" target="_blank" ga_event="click_index">首页</a>
-                    &gt;
-                    <a href="http://a285.wangzhanyanshi.com/news_tech/2655.html#" target="_blank"
-                       ga_event="click_channel">科技</a>
+<div id="container" class="clearfix">
+    <div class="detail-main">
+        <div id="pagelet-article">
+            <!--导航栏-->
+            <div class="curpos">
+                <a href="http://a285.wangzhanyanshi.com/" target="_blank" ga_event="click_index">首页</a>
+                &gt;
+                <a href="http://a285.wangzhanyanshi.com/news_tech/2655.html#" target="_blank"
+                   ga_event="click_channel">科技</a>
+            </div>
+            <input type="hidden" id="news_id" value="${news.id}">
+            <!--标题 - 时间-->
+            <div class="article-header">
+                <h1 class="title">${news.title}</h1>
+                <div class="minibar clearfix">
+                    <span class="time">${news.createTime}</span>
                 </div>
-                <input type="hidden" id="news_id" value="${news.id}">
-                <!--标题 - 时间-->
-                <div class="article-header">
-                    <h1 class="title">${news.title}</h1>
-                    <div class="minibar clearfix">
-                        <span class="time">${news.createTime}</span>
-                    </div>
-                </div>
-                <!--内容 + 图片-->
-                <div class="article-content">
-                    <p>${news.id}</p>
-                    <p>${news.authorId}</p>
+            </div>
+            <!--内容 + 图片-->
+            <div class="article-content">
+                <p>${news.id}</p>
+                <p>${news.authorId}</p>
                 <div class="article-actions">
                     <!--关键词  投诉-->
                     <div class="top-actions clearfix">
@@ -469,21 +470,18 @@
                                                                               src="../../source1/saved_resource"></script>0</span>条
                     </div>
                 </div>
-                <form action="http://a285.wangzhanyanshi.com/e/pl/doaction.php" method="post" name="saypl" id="saypl">
-                    <input name="username" type="hidden" class="inputText" id="username" value="" size="16">
-                    <input name="password" type="hidden" class="inputText" id="password" value="" size="16">
-                    <input name="id" type="hidden" id="id" value="2655">
-                    <input name="classid" type="hidden" id="classid" value="4">
-                    <input name="enews" type="hidden" id="enews" value="AddPl">
-                    <input name="repid" type="hidden" id="repid" value="0">
-                    <input type="hidden" name="ecmsfrom" value="/news_tech/2655.html">
+                <form action="/news/test" method="post">
+                    <input name="newsid" type="hidden" id="newsid" value="${news.id}">
+                    <input name="userid" type="hidden" id="userd" value="1">
+                    <input name="type" type="hidden" id="type" value="0">
                     <div class="ceditzone clearfix">
                         <div class="cavatar" data-node="cavatar"><img
                                 src="http://a285.wangzhanyanshi.com/news_tech/2655.html" onload="this.style.opacity=1"
                                 style="opacity: 1;"></div>
                         <div class="cbody cedit" data-node="cedit">
                             <div class="ctextarea">
-                                <textarea class="cinput" name="saytext" placeholder="写下你的评论..."
+                                <textarea id="content" name="content" class="cinput" name="saytext"
+                                          placeholder="写下你的评论..."
                                           onfocus="$(this).parent().parent().addClass('focus');$('#yzm').show()"></textarea>
                             </div>
                             <div class="caction">
@@ -493,18 +491,12 @@
                                     </div>
                                 </div>
                                 <span style="position:relative;top:5px;left:40px;display:none;" id="yzm">
-				<input name="key" type="text" class="inputText" size="10">
-				<img style="position: relative;top: 5px;" src="../../source1/saved_resource(1)" align="absmiddle"
-                     name="plKeyImg" id="plKeyImg" onclick="plKeyImg.src='/e/ShowKey/?v=pl&amp;t='+Math.random()"
-                     title="看不清楚,点击刷新">
-				匿名:<input name="nomember" type="checkbox" id="nomember" value="1" checked="checked">
-</span>
-                                <input type="submit" name="imageField" value="发表" class="csubmit"
+                                </span>
+                                <input type="button" name="imageField" value="发表" class="csubmit" onclick="pinglun()"
                                        style="    border: none;">
                             </div>
                         </div>
                     </div>
-                </form>
                 <ul id="clist" class="clist" data-node="listBox">
                     <script>
                         //登录头像
@@ -514,15 +506,34 @@
                         //评论内容
                         var p = 1;
                         function getmorepl() {
-                            var plurl = '/e/pl/more/more.php?classid=4&id=2655&num=5&p=' + p;
-                            $.get(plurl, {}, function (ret) {
-                                $('#clist').append(ret);
-                                p = p + 1;
-                                var re = 'digg-num';
-                                var len = ret.split(re).length;
-                                if (len < 6) {
-                                    $('.cloadmore').text('全部加载完毕').attr('onclick', '');
+                            var followId = $("#newsid").val();
+                            console.info(followId);
+                            var plurl = "/comment/get/news";
+                            $.post(plurl, {
+                                followId:followId,
+                                pageNum:p,
+                                pageSize:10
+                                },
+                                function (ret) {
+//                                console.info("000000 " + ret);
+                                console.info(ret);
+                                var results = ret.result;
+                                var lis ="<li>";
+                                var lie="</li>";
+                                for(var i  =0;i<results.length;i++) {
+                                    var userid = results[i].userId;
+                                    var content = results[i].content;
+                                    var element = lis + "<p>" + userid + "</p>"
+                                    + "<p>" + content +"</p>" + lie;
+                                    $('#clist').append(element);
                                 }
+//                                $('#clist').append(ret);
+                                p = p + 1;
+//                                var re = 'digg-num';
+//                                var len = ret.split(re).length;
+//                                if (len < 6) {
+//                                    $('.cloadmore').text('全部加载完毕').attr('onclick', '');
+//                                }
                             });
                         }
                         $(function () {
@@ -671,8 +682,30 @@
 
     </div>
 </div>
-
-<script src="../../source1/saved_resource(2)"></script>
-<script src="../../source1/saved_resource(3)"></script>
+<script type="text/javascript">
+    function pinglun() {
+        var userId = $("#userid").val();
+        var followId = $("#newsid").val();
+//        var type =   $("#type").val();
+        var content = $("#content").val();
+        var data ={
+            userId:userId,
+            newsId:newsId,
+//            type:type,
+            content:content
+        };
+        $.ajax({
+            url:"/comment/repay/news",
+            type:"post",
+            dataType:"json",
+            data:data,
+            success:function (data) {
+                if(data.code == "00") {
+                    alert("评论成功");
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
