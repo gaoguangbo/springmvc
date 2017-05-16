@@ -29,6 +29,7 @@
     <link type="text/css" rel="stylesheet" href="../../source1/ndetail_65199b6.css">
     <link type="text/css" rel="stylesheet" href="../../source1/nbase_b0dd754.css">
     <link type="text/css" rel="stylesheet" href="../../source1/core_e4b8984.css">
+    <link type="text/css" rel="stylesheet" href="../../css/talk.css">
 
     <script type="text/javascript" charset="gb2312" src="../../source1/lib_538033e.js"></script>
     <script type="text/javascript" charset="gb2312" src="../../source1/qrcode.min_1dc0697.js"></script>
@@ -38,7 +39,7 @@
     <link rel="stylesheet" href="../../source1/share_style0_16.css">
 </head>
 <body class="v2016" youdao="bind">
-
+<input id="pageNum1" type="hidden" value="1">
 
 <div id="wrapper" class="detail-wrapper">
     <div id="pagelet-nnav" class="nohome">
@@ -470,7 +471,6 @@
                                                                               src="../../source1/saved_resource"></script>0</span>条
                     </div>
                 </div>
-                <form action="/news/test" method="post">
                     <input name="newsid" type="hidden" id="newsid" value="${news.id}">
                     <input name="userid" type="hidden" id="userd" value="1">
                     <input name="type" type="hidden" id="type" value="0">
@@ -497,6 +497,34 @@
                             </div>
                         </div>
                     </div>
+
+                <div class="container">
+                    <div class="comment">
+                        <ul id="ul_contain">
+                            <%--<li class="trem">--%>
+                                <%--<a href="#" class = "avatar-wrap"><img src="#"></a>--%>
+                                <%--<div class="c-content">--%>
+                                    <%--<div class="user-content">--%>
+                                        <%--<a href="#" class = "user-name">${username}</a>--%>
+                                        <%--<span class = "user-time">${time}</span>--%>
+                                    <%--</div>--%>
+                                    <%--<p>${content}</p>--%>
+                                    <%--<div class="c-footer">--%>
+                                        <%--<span class= "c-reply">回复</span>--%>
+                                        <%--<span class= "c-report" id = "c_report">&nbsp;&nbsp;<em>1</em>条回复</span>--%>
+                                        <%--<div class="c-reply-comment" id = "reply_comment">--%>
+                                            <%--<ul id="ul+${newsId}">--%>
+                                            <%--</ul>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</li>--%>
+                            <%--<li class="trem"></li>--%>
+                        </ul>
+                    </div>
+                </div>
+
+
                 <ul id="clist" class="clist" data-node="listBox">
                     <script>
                         //登录头像
@@ -504,37 +532,49 @@
                             $('.cavatar img').attr('src', ret);
                         })
                         //评论内容
+
                         var p = 1;
                         function getmorepl() {
                             var followId = $("#newsid").val();
                             console.info(followId);
+//                            var p = $("#pageNum1").val();
                             var plurl = "/comment/get/news";
                             $.post(plurl, {
                                 followId:followId,
                                 pageNum:p,
-                                pageSize:10
+                                pageSize:2
                                 },
                                 function (ret) {
-//                                console.info("000000 " + ret);
                                 console.info(ret);
                                 var results = ret.result;
-                                var lis ="<li>";
-                                var lie="</li>";
+                                var lis ='<li class="trem">';
+                                var lie='</li>';
+                                if(results.length == 0) {
+                                    $("#isover").html("已经全部加载");
+                                }
                                 for(var i  =0;i<results.length;i++) {
                                     var userid = results[i].userId;
                                     var content = results[i].content;
-                                    var element = lis + "<p>" + userid + "</p>"
-                                    + "<p>" + content +"</p>" + lie;
-                                    $('#clist').append(element);
+                                    var time = results[i].repayTime;
+                                    var aq = '<a href="#" class = "avatar-wrap"><img src="#"></a>';
+                                    var div1s='<div class="c-content">';
+                                    var div1e='</div>';
+                                    var div2='<div class="user-content">'
+                                        +'<a href="#" class = "user-name">'+userid+'</a>'
+                                        +'<span class = "user-time">'+time+'</span>'
+                                        +'</div>';
+                                    var p = '<p>'+content+'</p>';
+                                    var div3 = '<div class="c-footer">'
+                                        +'<div class="c-reply-comment" id = "reply_comment">'
+                                        +'<ul id="ul_'+followId+'"></ul></div></div>';
+                                    console.info(div3);
+                                    var element = lis +aq+div1s+div2+p+div3+div1e+lie;
+                                    $('#ul_contain').append(element);
                                 }
+
 //                                $('#clist').append(ret);
-                                p = p + 1;
-//                                var re = 'digg-num';
-//                                var len = ret.split(re).length;
-//                                if (len < 6) {
-//                                    $('.cloadmore').text('全部加载完毕').attr('onclick', '');
-//                                }
                             });
+                           p = p+1;
                         }
                         $(function () {
                             getmorepl();
@@ -544,7 +584,7 @@
 
                 </ul>
 
-                <a class="cloadmore" href="javascript:;" style="display:block;text-align:center;" onclick="">全部加载完毕</a>
+                <a id="isover" class="cloadmore" href="javascript:void(0);" style="display:block;text-align:center;" onclick="getmorepl()">点击加载更多</a>
             </div>
 
         </div>
@@ -707,5 +747,22 @@
         });
     }
 </script>
+<script type="text/javascript">
+    var report = document.getElementById("c_report");
+    var report_comment = document.getElementById("reply_comment");
+    var flag = false;//收起回复
+    report.onclick = function(){
+        if(flag){
+            report_comment.style.display = "none";
+            report.innerHTML = "&nbsp;<em>1</em>条回复";
+            flag = false;
+        }else{
+            report_comment.style.display = "block";
+            report.innerHTML = "&nbsp;收起回复";
+            flag = true;
+        }
+    }
+</script>
+
 </body>
 </html>

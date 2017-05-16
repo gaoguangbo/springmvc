@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/talk.css">
+</head>
+<body>
+	<div class="container">
+		<div class="comment">
+			<ul>
+				<li class="trem">
+					<a href="#" class = "avatar-wrap">
+						<img src="#">
+					</a>
+					<div class="c-content">
+						<div class="user-content">
+							<a href="#" class = "user-name">1234567</a>
+							<span class = "user-time">1234</span>
+						</div>
+						<p>求？谢霆锋在安吉唱了两首歌，就六十万是属于哪个档次？</p>
+						<div class="c-footer">
+							<span class= "c-reply">回复</span>
+							<span class= "c-report" id = "c_report">&nbsp;&nbsp;<em>1</em>条回复</span>
+							<div class="c-reply-comment" id = "reply_comment">
+								<ul>
+									<li class="trem">
+										<a href="#" class = "avatar-wrap">
+											<img src="#">
+										</a>
+										<div class="c-content">
+											<div class="user-content">
+												<a href="#" class = "user-name">1234567</a>
+												<span class = "user-time">1234</span>
+											</div>
+											<p>求？谢霆锋在安吉唱了两首歌，就六十万是属于哪个档次？</p>
+											<div class="c-footer">
+												<span class= "c-reply">回复</span>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="trem"></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var report = document.getElementById("c_report");
+		var report_comment = document.getElementById("reply_comment");
+		var flag = false;//收起回复
+		report.onclick = function(){
+			if(flag){
+				report_comment.style.display = "none";
+				report.innerHTML = "&nbsp;<em>1</em>条回复";
+				flag = false;
+			}else{
+				report_comment.style.display = "block";
+				report.innerHTML = "&nbsp;收起回复";
+				flag = true;
+			}
+		}
+	</script>
+</body>
+</html>
