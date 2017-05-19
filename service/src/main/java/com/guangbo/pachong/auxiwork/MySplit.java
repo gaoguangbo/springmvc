@@ -9,9 +9,9 @@ import java.util.List;
 
 public class MySplit {
 
-    private String fileToSplit; //´ý·Ö´ÊµÄ.txtÎÄ¼þ
-    private String fileSplited; //ÒÑ·Ö´Ê´¦Àí¹ýµÄÎÄ¼þ
-    private LinkedList<String> wordList;  //½«ÎÄµµ·ÖºÃµÄ´Ê±£´æµ½wordListÖÐ
+    private String fileToSplit; //ï¿½ï¿½ï¿½Ö´Êµï¿½.txtï¿½Ä¼ï¿½
+    private String fileSplited; //ï¿½Ñ·Ö´Ê´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
+    private LinkedList<String> wordList;  //ï¿½ï¿½ï¿½Äµï¿½ï¿½ÖºÃµÄ´Ê±ï¿½ï¿½æµ½wordListï¿½ï¿½
 
     public MySplit() {
 
@@ -26,7 +26,7 @@ public class MySplit {
         //fileSplit_List();
     }
 
-    // ·Ö´ÊºóµÄ½á¹û±£´æµ½Êä³öÎÄ¼þÖÐ
+    // ï¿½Ö´Êºï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½æµ½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
     public void fileSplit_save() throws IOException {
         File fileIn = new File(fileToSplit);
         File fileOut = new File(fileSplited);
@@ -39,19 +39,19 @@ public class MySplit {
 
         while (tempString != null) {
 
-            if (tempString.matches("\\s*"))  //¹ýÂËµô¿ÕÐÐ
+            if (tempString.matches("\\s*"))  //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 tempString = reader.readLine();
                 continue;
             }
 
             tempString = tempString.trim();
-            String result = tempString.replaceAll("(?i)[^a-zA-Z0-9\u4E00-\u9FA5]", "");  //¹ýÂËµôÆæ¹ÖµÄ·ûºÅ
+            String result = tempString.replaceAll("(?i)[^a-zA-Z0-9\u4E00-\u9FA5]", "");  //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ÖµÄ·ï¿½ï¿½ï¿½
             tempString = result;
 
             List<Term> parse = ToAnalysis.parse(tempString);
             String tempSplited = parse.toString();
-            tempSplited = tempSplited.replace("[", "");  //¹ýÂËµô·Ö´Êºó²úÉúµÄÇ°¶Ëºó¶Ë·ûºÅ
+            tempSplited = tempSplited.replace("[", "");  //ï¿½ï¿½ï¿½Ëµï¿½ï¿½Ö´Êºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ëºï¿½Ë·ï¿½ï¿½ï¿½
             tempSplited = tempSplited.replace("]", "");
             String[] tempArray = tempSplited.split("\\,");
 
@@ -69,7 +69,7 @@ public class MySplit {
         reader.close();
     }
 
-    // ·Ö´ÊºóµÄ½á¹û±£´æµ½LinkedListÖÐ
+    // ï¿½Ö´Êºï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½æµ½LinkedListï¿½ï¿½
     public void fileSplit_List() throws Exception {
         File fileIn = new File(fileToSplit);
         FileInputStream inputstream = new FileInputStream(fileIn);
@@ -78,19 +78,19 @@ public class MySplit {
 
 //        while (tempString != null) {
 //
-//            if (tempString.matches("\\s*"))  //¹ýÂËµô¿ÕÐÐ
+//            if (tempString.matches("\\s*"))  //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
 //            {
 //                tempString = reader.readLine();
 //                continue;
 //            }
 //
 //            tempString = tempString.trim();
-//            String result = tempString.replaceAll("(?i)[^a-zA-Z0-9\u4E00-\u9FA5]", "");  //¹ýÂËµôÆæ¹ÖµÄ·ûºÅ
+//            String result = tempString.replaceAll("(?i)[^a-zA-Z0-9\u4E00-\u9FA5]", "");  //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ÖµÄ·ï¿½ï¿½ï¿½
 //            tempString = result;
 //
 //            List<Term> parse = ToAnalysis.parse(tempString);
 //            String tempSplited = parse.toString();
-//            tempSplited = tempSplited.replace("[", "");  //¹ýÂËµô·Ö´Êºó²úÉúµÄÇ°¶Ëºó¶Ë·ûºÅ
+//            tempSplited = tempSplited.replace("[", "");  //ï¿½ï¿½ï¿½Ëµï¿½ï¿½Ö´Êºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ëºï¿½Ë·ï¿½ï¿½ï¿½
 //            tempSplited = tempSplited.replace("]", "");
 //            String[] tempArray = tempSplited.split("\\,");
 //
