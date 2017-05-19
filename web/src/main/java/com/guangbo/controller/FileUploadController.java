@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.UUID;
 
 
+import com.guangbo.service.INewsOperateService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +28,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class FileUploadController {
-    @RequestMapping(value = "/upload",produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/upload")
     @ResponseBody
-    public String upload(@RequestParam(value = "file", required = false)MultipartFile file, ModelMap model) {
+    public String upload(MultipartFile file, ModelMap model) {
         String uploadDir = "/Users/gaoguangbo/Documents/java/springmvc/web/src/main/webapp/imagesup";
+        String resDir = "../../imagesup/";
         if(!file.isEmpty()){
             try {
                 //这里将上传得到的文件保存至 d:\\temp\\file 目录
@@ -42,6 +45,6 @@ public class FileUploadController {
                 e.printStackTrace();
             }
         }
-        return "http://localhost:8080/imagesup/"+ file.getOriginalFilename();
+        return resDir+"/"+file.getOriginalFilename();
     }
 }

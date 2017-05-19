@@ -12,7 +12,7 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
     <link rel="shortcut icon" href="http://a285.wangzhanyanshi.com/favicon.ico" type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="../../source/nbase_cf47e58.css">
-    <title>《a285网站演示-今日头条》你关心的，才是头条！ - TouTiao.com</title>
+    <title>我的头条</title>
     <meta name="keywords" content="今日头条">
     <meta name="description" content="《今日头条》(TouTiao.com)是一款会自动学习的资讯软件,它会聪明地分析你的兴趣爱好,自动为你推荐喜欢的内容,并且越用越懂你.你关心的,才是头条!">
     <link rel="stylesheet" type="text/css" href="../../source/core_b666bd6.css">
@@ -113,7 +113,7 @@
             <ul class="right">
                 <li class="tb-item"><span><script src=""></script></span></li>
                 <li class="tb-item"><a class="tb-link" href="javascript:;">lili</a></li>
-                <li class="tb-item"><a class="tb-link" href="/">媒体号</a></li>
+                <li class="tb-item"><a class="tb-link" href="/admin">媒体号</a></li>
                 <li class="tb-item"><a class="tb-link"
                                        href=""
                                        onclick="return confirm('确认要退出?');">退出</a></li>
@@ -495,7 +495,7 @@
                     console.info(results[i]);
                     console.info(results[i].authorId)
 
-                    var nhtml = create_news(results[i].id,results[i].title,results[i].content);
+                    var nhtml = create_news(results[i].id,results[i].title,results[i].content,results[i].picUrl);
                     all = all + nhtml;
 //                    ul.append(html);
 //                    console.info(html);
@@ -510,13 +510,13 @@
     }
 
 
-    function create_news(news_id,title,content) {
+    function create_news(news_id,title,content,picurl) {
 
         var newli ='<li class="item clearfix" data-node="item" rel="loaded">'
         +'<div class="item-inner">'
         +'<div class="lbox left">'
         +'<a href="/news/getNewsById?news_id='+ news_id +'" target="_blank">'
-        +'<img class="feedimg" src="../../source/5740005ce748d94936b"'
+        +'<img class="feedimg" src="'+picurl+'"'
         +'onload="this.style.opacity=1;" style="opacity: 1;">'
         +'</a>'
         +'</div>'

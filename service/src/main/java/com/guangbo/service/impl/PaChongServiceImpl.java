@@ -17,6 +17,15 @@ import org.jsoup.select.Elements;
  * Created by gaoguangbo on 2017/5/16.
  */
 public class PaChongServiceImpl implements IPaChongService {
+    private String lastText;
+
+    public String getLastText() {
+        return lastText;
+    }
+
+    public void setLastText(String lastText) {
+        this.lastText = lastText;
+    }
     public String getNewsByUrl(String url) {
 
         return null;
@@ -62,9 +71,10 @@ public class PaChongServiceImpl implements IPaChongService {
             String text2 = ps.toString();
 
             for (Element p : ps) {
-                String text = p.html();
+                String text = p.text();
              all += text;
             }
+            this.lastText = all;
             System.out.println(all);
 //            for (Element div : ListDiv) {
 //                Elements textInfos = div.getElementsByTag("p");
@@ -74,10 +84,10 @@ public class PaChongServiceImpl implements IPaChongService {
 //                    textMes = textMes + text + "\n";
 //                }
 //            }
-            System.out.println(textMes);
+            System.out.println(all);
             onlyName = new Date().getTime();
             path = localPath+onlyName+".txt";
-            writeFromBuffer(textMes,""+path);
+            writeFromBuffer(all,""+path);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

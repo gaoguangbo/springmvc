@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -36,7 +37,9 @@
         }
     </style>
 </head>
+<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
 <script src="../../data/html/setday.js"></script>
+<script src="../../js/ajaxfileupload.js"></script>
 <script>
     function bs() {
         var f = document.add
@@ -87,7 +90,7 @@
 <div id="pagelet-header">
     <div class="shead">
         <div class="shead_wrap">
-            <a class="shead_logo" href="/">媒体号</a>
+            <a class="shead_logo" href="/admin">媒体号</a>
             <div class="shead_status">
                 <span></span>
             </div>
@@ -172,7 +175,7 @@
             </div>
         </div>
         <div class="stage formbox">
-            <form name="add" method="POST" action="/news/publish">
+            <form name="add" method="POST" id="form1" action="/news/publish">
                 <div class="">
                     <div class="page_tabs sclearfix" style="border:none;border-bottom: 1px solid #d8dce4;">
                         <div class="page_tab selected"
@@ -185,6 +188,19 @@
                         <input name=id type=hidden id="id" value="0">
                         <input type=hidden value="1494424312" name=filepass>
                         <input name=mid type=hidden id="mid" value="1">
+                        <div class="edit-cell">
+                            <div class="edit-main front-cover">
+                                <label class="edit-label">网络新闻url</label>
+                                <div class="edit-input">
+                                    <div class="front-cover-type">
+                                        <div class="front-cover-item">
+                                            <input type="text" id ="newsurl" name="newsurl" >
+                                            <input type="button" onclick="huoqu()" value="获取">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="edit-cell">
                             <div class="edit-main front-cover">
                                 <label class="edit-label">提交者</label>
@@ -203,9 +219,12 @@
                                 <div class="edit-input">
                                     <div class="front-cover-type">
                                         <div class="front-cover-item">
-                                            <a href='/news_entertainment/' target='_blank'>娱乐</a>&nbsp;[<a
-                                                href='ChangeClass.php?mid=1'>重新选择</a>]
-                                            <input type="text" id ="typeId" name = "typeId">
+                                            <select id ="typeId" name="typeId">
+                                                <c:forEach items="${types}" var="item" varStatus="status">
+                                                    <option value="${item.id}">${item.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                            <input id="gettype" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +245,10 @@
                             <div class="edit-input">
                                 <div class="front-cover-type">
                                     <div class="front-cover-item">
-                                        <input type="text" id="picUrl" name="picUrl" size="45">
+                                        <form action="/upload" id="uploadForm" method="post" enctype="multipart/form-data">
+                                            <input type="file" id="file" name="file" size="45"/>
+                                            <input type="button" onclick="upload_file()" value="确定" /></form>
+                                        <input type="text" id="picUrl" name="picUrl" value="">
                                     </div>
                                 </div>
                             </div>
@@ -278,7 +300,7 @@
 <div id="backtop"></div>
 
 
-<script type="text/javascript" src="../../js/lib/jquery-1.10.2.min.js"></script>
+
 <script type="text/javascript" src="../../js/wangEditor.js"></script>
 <!--<script type="text/javascript" src="../dist/js/wangEditor.min.js"></script>-->
 <script type="text/javascript">
@@ -374,39 +396,60 @@
         console.log(this.$txt.html());
     };
 
-    // 取消过滤js
-    // editor.config.jsFilter = false;
-
-    // 取消粘贴过来
-    // editor.config.pasteFilter = false;
-
-    // 设置 z-index
-    // editor.config.zindex = 20000;
-
-    // 语言
-    // editor.config.lang = wangEditor.langs['en'];
-
-    // 自定义菜单UI
-    // editor.UI.menus.bold = {
-    //     normal: '<button style="font-size:20px; margin-top:5px;">B</button>',
-    //     selected: '.selected'
-    // };
-    // editor.UI.menus.italic = {
-    //     normal: '<button style="font-size:20px; margin-top:5px;">I</button>',
-    //     selected: '<button style="font-size:20px; margin-top:5px;"><i>I</i></button>'
-    // };
     editor.create();
-//    $("#onclick1").click( function () {
-//        var content = editor.$txt.html();
-//        var data ={
-//            authorId:$("#authorId").val(),
-//            typeId:$("#typeId").val(),
-//            title:$("#title").val(),
-//            picUrl:$("#picUrl").val(),
-//            content:$("#content").val()
-//        }
-//        jQuery.post(url,data,success(response,status,xhr),dataType)
-//    });
+
+</script>
+<script>
+    function upload_file() {
+        var file = $("#file").val();
+        if(file == null || file =="") {
+            alert("请选择文件");
+            return;
+        }
+        var formData = new FormData($("#uploadForm")[0]);
+        $.ajaxFileUpload({
+            url:"/upload",
+            secureuri:false,
+            fileElementId:'file',           //文件选择框的id属性
+            dataType:'text',
+//            data:formData,
+//            asyn:false,
+//            cache:false,
+//            processData:false,
+            success:function (data,status) {
+                if(data) {
+                    alert("成功");
+                    $("#picUrl").attr("value",data);
+                    alert($("#picUrl").val());
+                }
+
+            }
+        });
+
+    };
+
+    function huoqu() {
+        var url = $("#newsurl").val();
+        var data={
+            newsUrl:url
+        }
+        $.ajax({
+            url: "/news/getByUrl",
+            type: "post",
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                console.info(data);
+                var type = data.type;
+                var content = data.content;
+                $("#content").html(content);
+                editor.$txt.html(content);
+                $("#gettype").val(type);
+//                alert(data);
+            }
+        });
+
+    }
 </script>
 </body>
 </html>

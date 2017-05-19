@@ -85,7 +85,7 @@ public class HttpButtonHandler {
 			  break;
 		  }
 	  }
-	  
+	  flag=0;
 	  switch(flag){
 	     case 0:
 		     result="²Æ¾­";

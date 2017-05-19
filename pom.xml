@@ -113,7 +113,14 @@
             <artifactId>jsoup</artifactId>
             <version>1.9.2</version>
         </dependency>
+
         <!-- jsp servlet jar end -->
+        <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>spring</finalName>

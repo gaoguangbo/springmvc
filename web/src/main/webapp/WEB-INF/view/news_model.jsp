@@ -164,7 +164,7 @@
             <ul class="right">
                 <li class="tb-item"><span><script src="../../source1/loginjs2.php"></script></span></li>
                 <li class="tb-item"><a class="tb-link" href="javascript:;">lili</a></li>
-                <li class="tb-item"><a class="tb-link" href="http://a285.wangzhanyanshi.com/e/member/cp/">媒体号</a></li>
+                <li class="tb-item"><a class="tb-link" href="/admin">媒体号</a></li>
                 <li class="tb-item"><a class="tb-link"
                                        href="http://a285.wangzhanyanshi.com/e/member/doaction.php?enews=exit"
                                        onclick="return confirm('确认要退出?');">退出</a></li>
@@ -265,6 +265,7 @@
             <div class="article-content">
                 <p>${news.id}</p>
                 <p>${news.authorId}</p>
+                <p>${news.content}</p>
                 <div class="article-actions">
                     <!--关键词  投诉-->
                     <div class="top-actions clearfix">
@@ -318,7 +319,7 @@
                         <div class="item-inner">
                             <div class="lbox left">
                                 <a href="http://a285.wangzhanyanshi.com/news_tech/2657.html" target="_blank">
-                                    <img class="feedimg middle-mode" src="../../source1/4ca000008cb2293d2fe"
+                                    <img class="feedimg middle-mode" src="../../imagesup/weiruan.jpeg"
                                          onload="this.style.opacity=1;" style="opacity: 1;">
                                 </a>
                             </div>
@@ -351,77 +352,8 @@
                     <li class="item clearfix" data-node="item">
                         <div class="item-inner">
                             <div class="lbox left">
-                                <a href="http://a285.wangzhanyanshi.com/news_tech/2655.html" target="_blank">
-                                    <img class="feedimg middle-mode" src="../../source1/48400056470d39cf05e"
-                                         onload="this.style.opacity=1;" style="opacity: 1;">
-                                </a>
-                            </div>
-                            <div class="rbox"><!--hold-->
-                                <div class="rbox-inner">
-                                    <div class="title-box">
-                                        <a ga_event="click_title_relevant" class="link title"
-                                           href="http://a285.wangzhanyanshi.com/news_tech/2655.html" target="_blank"
-                                           data-node="title">
-                                            网站要给用户好的体验必须遵循视线金三角分布法 </a>
-                                    </div>
-                                    <div class="abstract">
-                                        <a ga_event="click_abstract_relevant" class="link"
-                                           href="http://a285.wangzhanyanshi.com/news_tech/2655.html" target="_blank">视线分布金三角是根据人体习惯得出来的一个词，表示用户打开搜索结果页面后，
-                                            目光会首先放在最左上角，然后向正下方移动挨个浏览搜索结果，当看到感兴趣的页面时，横向向</a>
-                                    </div>
-                                    <div class="footer clearfix">
-                                        <div class="left lfooter">
-
-                                            <a class="lbtn source" href="http://a285.wangzhanyanshi.com/news_tech/"
-                                               target="_blank">news_tech&nbsp;&#8901;</a>
-
-                                            <!-- <span class="lbtn comment">0评论&nbsp;&sdot;</span> -->
-                                            <span class="lbtn time">04-20 20:13</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item clearfix" data-node="item">
-                        <div class="item-inner">
-                            <div class="lbox left">
-                                <a href="http://a285.wangzhanyanshi.com/news_tech/2654.html" target="_blank">
-                                    <img class="feedimg middle-mode" src="../../source1/4ca0001199b304a64b5"
-                                         onload="this.style.opacity=1;" style="opacity: 1;">
-                                </a>
-                            </div>
-                            <div class="rbox"><!--hold-->
-                                <div class="rbox-inner">
-                                    <div class="title-box">
-                                        <a ga_event="click_title_relevant" class="link title"
-                                           href="http://a285.wangzhanyanshi.com/news_tech/2654.html" target="_blank"
-                                           data-node="title">
-                                            平安银行成立首个专业电商俱乐部 </a>
-                                    </div>
-                                    <div class="abstract">
-                                        <a ga_event="click_abstract_relevant" class="link"
-                                           href="http://a285.wangzhanyanshi.com/news_tech/2654.html" target="_blank">日前，2016世界电子商务大会在浙江义乌召开。作为我国目前规模最大的电子商务大会，本次大会云集了国内外电商行业龙头。会议期间，平安银行还发起成立了首个专业电商俱乐部</a>
-                                    </div>
-                                    <div class="footer clearfix">
-                                        <div class="left lfooter">
-
-                                            <a class="lbtn source" href="http://a285.wangzhanyanshi.com/news_tech/"
-                                               target="_blank">news_tech&nbsp;&#8901;</a>
-
-                                            <!-- <span class="lbtn comment">0评论&nbsp;&sdot;</span> -->
-                                            <span class="lbtn time">04-20 20:13</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item clearfix" data-node="item">
-                        <div class="item-inner">
-                            <div class="lbox left">
                                 <a href="http://a285.wangzhanyanshi.com/news_tech/2644.html" target="_blank">
-                                    <img class="feedimg middle-mode" src="../../source1/4850005733f143cee3b"
+                                    <img class="feedimg middle-mode" src="../../imagesup/sanjiao.jpeg"
                                          onload="this.style.opacity=1;" style="opacity: 1;">
                                 </a>
                             </div>
@@ -468,7 +400,7 @@
                                                 target="_blank">所有评论</a></div>
                     <div class="ctotal">
                         <span class="ctotalnum" data-node="ctotalnum"><script type="text/javascript"
-                                                                              src="../../source1/saved_resource"></script>0</span>条
+                                                                              src="../../source1/saved_resource"></script></span>
                     </div>
                 </div>
                     <input name="newsid" type="hidden" id="newsid" value="${news.id}">
@@ -476,7 +408,7 @@
                     <input name="type" type="hidden" id="type" value="0">
                     <div class="ceditzone clearfix">
                         <div class="cavatar" data-node="cavatar"><img
-                                src="http://a285.wangzhanyanshi.com/news_tech/2655.html" onload="this.style.opacity=1"
+                                src="../../imagesup/touxiang.jpg" onload="this.style.opacity=1"
                                 style="opacity: 1;"></div>
                         <div class="cbody cedit" data-node="cedit">
                             <div class="ctextarea">
@@ -556,7 +488,7 @@
                                     var userid = results[i].userId;
                                     var content = results[i].content;
                                     var time = results[i].repayTime;
-                                    var aq = '<a href="#" class = "avatar-wrap"><img src="#"></a>';
+                                    var aq = '<a href="#" class = "avatar-wrap"><img src="../../imagesup/touxiang.jpg"></a>';
                                     var div1s='<div class="c-content">';
                                     var div1e='</div>';
                                     var div2='<div class="user-content">'
@@ -600,7 +532,7 @@
                     </div>
 
                     <span class="Pgc_name">
-          admin 
+          admin
         </span>
                     <span class="Pgc_details"></span>
 
@@ -729,8 +661,8 @@
 //        var type =   $("#type").val();
         var content = $("#content").val();
         var data ={
-            userId:userId,
-            newsId:newsId,
+            userId:1,
+            followId:followId,
 //            type:type,
             content:content
         };

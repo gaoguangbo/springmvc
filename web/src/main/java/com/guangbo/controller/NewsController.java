@@ -1,8 +1,10 @@
 package com.guangbo.controller;
 
 import com.guangbo.common.WebResult;
+import com.guangbo.dao.entity.FenleiResult;
 import com.guangbo.dao.entity.NewsBack;
 import com.guangbo.dao.entity.NewsInfo;
+import com.guangbo.pachong.newsClassify.GraphModel;
 import com.guangbo.service.INewsBackService;
 import com.guangbo.service.INewsOperateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,22 @@ public class NewsController {
         webResult.setMsg("成功");
         return webResult;
     }
-}
+
+    @RequestMapping("/getByUrl")
+    @ResponseBody
+    public Object geturl(String newsUrl) {
+//        String url = "http://finance.sina.com.cn/stock/s/2017-05-16/doc-ifyfeivp5752185.shtml";
+        FenleiResult result = new FenleiResult();
+        try {
+            GraphModel graphModel = new GraphModel();
+            String[] fenlei = graphModel.fenlei(newsUrl);
+            result.setContent(fenlei[0]);
+            result.setType(fenlei[1]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+     }
+    }
+
 

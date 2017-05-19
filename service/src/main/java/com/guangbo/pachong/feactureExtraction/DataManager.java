@@ -26,7 +26,7 @@ public class DataManager {
 	  private final  float info_class=(float) (-(1.0/7.0)*(Math.log(1.0/7.0)/Math.log(2)))*7;
 	  
 	  public DataManager() throws Exception{
-		  path="E:\\私人空间\\学习\\课程学习\\现代信息检索\\SogouC_splited_line";
+		  path="/User/local/SogouC_splited_line";
 		  wordList=new LinkedList<Map<String,Integer>>();
 		  c1Map=new LinkedHashMap<String,Integer>();
 		  c2Map=new LinkedHashMap<String,Integer>();

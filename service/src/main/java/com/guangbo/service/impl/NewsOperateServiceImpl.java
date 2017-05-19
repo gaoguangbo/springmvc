@@ -47,7 +47,7 @@ public class NewsOperateServiceImpl implements INewsOperateService {
     }
 
     public void publish(NewsInfo record) {
-        newsInfoMapper.insert(record);
+        newsInfoMapper.insertSelective(record);
     }
 
     public NewsInfo getNews(Integer news_id) {
