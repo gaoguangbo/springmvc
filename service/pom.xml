@@ -90,6 +90,7 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/je-analysis-1.5.3.jar</systemPath>
         </dependency>
+
     </dependencies>
 
 </project>
