@@ -677,6 +677,66 @@ public class NewsInfoExample extends PageInfoPO<NewsInfo>{
             return (Criteria) this;
         }
 
+        public Criteria andIsCheckIsNull() {
+            addCriterion("is_check is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckIsNotNull() {
+            addCriterion("is_check is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckEqualTo(Byte value) {
+            addCriterion("is_check =", value, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckNotEqualTo(Byte value) {
+            addCriterion("is_check <>", value, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckGreaterThan(Byte value) {
+            addCriterion("is_check >", value, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckGreaterThanOrEqualTo(Byte value) {
+            addCriterion("is_check >=", value, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckLessThan(Byte value) {
+            addCriterion("is_check <", value, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckLessThanOrEqualTo(Byte value) {
+            addCriterion("is_check <=", value, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckIn(List<Byte> values) {
+            addCriterion("is_check in", values, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckNotIn(List<Byte> values) {
+            addCriterion("is_check not in", values, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckBetween(Byte value1, Byte value2) {
+            addCriterion("is_check between", value1, value2, "isCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckNotBetween(Byte value1, Byte value2) {
+            addCriterion("is_check not between", value1, value2, "isCheck");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

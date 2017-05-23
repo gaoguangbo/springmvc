@@ -22,6 +22,8 @@ public class NewsInfo implements Serializable {
 
     private String picUrl;
 
+    private Byte isCheck;
+
     private Date createTime;
 
     private String content;
@@ -98,6 +100,14 @@ public class NewsInfo implements Serializable {
 
     public void setPicUrl(String picUrl) {
         this.picUrl = picUrl == null ? null : picUrl.trim();
+    }
+
+    public Byte getIsCheck() {
+        return isCheck;
+    }
+
+    public void setIsCheck(Byte isCheck) {
+        this.isCheck = isCheck;
     }
 
     public Date getCreateTime() {

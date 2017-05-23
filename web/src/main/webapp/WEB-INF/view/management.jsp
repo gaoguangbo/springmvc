@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- saved from url=(0058)http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -180,15 +181,17 @@
 					<i class="sn">操作</i>
 				</div>
 			</div>
-            <div class="page_content indexpage_content">
-				<div class="indexpage_item">
-					<a href="http://a285.wangzhanyanshi.com/news_discovery/2675.html" target="_blank">sdf</a>
-					<i class="sn" style="right:300px;">2017-05-12</i>
-					<i class="sn" style="right:200px;">0</i>
-					<i class="sn" style="right:100px;">√</i>
-					<i class="sn"><a href="http://a285.wangzhanyanshi.com/e/DoInfo/AddInfo.php?enews=MEditInfo&amp;classid=12&amp;id=2675&amp;mid=1">修改</a> | <a href="http://a285.wangzhanyanshi.com/e/DoInfo/ecms.php?enews=MDelInfo&amp;classid=12&amp;id=2675&amp;mid=1" onclick="return confirm(&#39;确认要删除?&#39;);">删除</a></i>
+			<c:forEach items="${articles}" var="item" varStatus="status">
+				<div class="page_content indexpage_content">
+					<div class="indexpage_item">
+						<a href="" target="_blank">${item.title}</a>
+						<i class="sn" style="right:300px;">${item.createTime}</i>
+						<i class="sn" style="right:200px;">${item.clicktimes}</i>
+						<i class="sn" style="right:100px;"><c:if test="${item.isCheck == 0}">√</c:if><c:if test="${item.isCheck != 0}">✘</c:if></i>
+						<i class="sn"><a href="">修改</a> | <a href="" onclick="return confirm('确认要删除');">删除</a></i>
+					</div>
 				</div>
-            </div>
+			</c:forEach>
         </div>
     </div>
     

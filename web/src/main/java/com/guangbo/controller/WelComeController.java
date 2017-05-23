@@ -27,9 +27,4 @@ public class WelComeController {
         model.addAttribute("types", list);
         return "publish_news";
     }
-    @RequestMapping("/admin")
-    public String admin(Model model) {
-        return "admin";
-    }
-
 }

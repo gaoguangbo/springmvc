@@ -18,6 +18,8 @@ public interface NewsInfoMapper {
 
     List<NewsInfo> selectByExampleWithBLOBs(NewsInfoExample example);
 
+    List<NewsInfo> selectByExampleWithBLOBsByPage(NewsInfoExample example);
+
     List<NewsInfo> selectByExample(NewsInfoExample example);
 
     NewsInfo selectByPrimaryKey(Integer id);

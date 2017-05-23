@@ -29,7 +29,18 @@ public class NewsOperateServiceImpl implements INewsOperateService {
     }
 
     public List<NewsInfo> query(NewsInfo record) {
-        return null;
+        NewsInfoExample example = new NewsInfoExample();
+        NewsInfoExample.Criteria criteria = example.createCriteria();
+        if (record.getId() != null) {
+            criteria.andIdEqualTo(record.getId());
+        }
+        if (record.getAuthorId() != null) {
+            criteria.andAuthorIdEqualTo(record.getAuthorId());
+        }
+        if (record.getIsCheck() != null) {
+            criteria.andIsCheckEqualTo(record.getIsCheck());
+        }
+        return newsInfoMapper.selectByExampleWithBLOBs(example);
     }
 
     public int update(NewsInfo record) {
@@ -42,7 +53,7 @@ public class NewsOperateServiceImpl implements INewsOperateService {
         example.setPageNum(startLimit, endLimit);
         PageInfoPO<NewsInfo> res = new NewsInfoExample();
         res.setPageNum(startLimit, endLimit);
-        res.setResults(newsInfoMapper.selectByExampleWithBLOBs(example));
+        res.setResults(newsInfoMapper.selectByExampleWithBLOBsByPage(example));
         return res;
     }
 

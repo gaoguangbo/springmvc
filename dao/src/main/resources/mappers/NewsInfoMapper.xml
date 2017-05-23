@@ -11,6 +11,7 @@
     <result column="clicktimes" property="clicktimes" jdbcType="INTEGER" />
     <result column="repaytimes" property="repaytimes" jdbcType="INTEGER" />
     <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="is_check" property="isCheck" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.guangbo.dao.entity.NewsInfo" extends="BaseResultMap" >
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, author_id, title, type_id, region_id, keywords, clicktimes, repaytimes, pic_url, 
-    create_time
+    is_check, create_time
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -95,6 +96,25 @@
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExampleWithBLOBsByPage" resultMap="ResultMapWithBLOBs" parameterType="com.guangbo.dao.entity.NewsInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test=" startLimit != null">
+      limit ${startLimit},${pageSize}
     </if>
   </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guangbo.dao.entity.NewsInfoExample" >
@@ -133,11 +153,13 @@
     insert into news_info (id, author_id, title, 
       type_id, region_id, keywords, 
       clicktimes, repaytimes, pic_url, 
-      create_time, content)
+      is_check, create_time, content
+      )
     values (#{id,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{typeId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{keywords,jdbcType=VARCHAR}, 
       #{clicktimes,jdbcType=INTEGER}, #{repaytimes,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+      #{isCheck,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.guangbo.dao.entity.NewsInfo" >
     insert into news_info
@@ -168,6 +190,9 @@
       </if>
       <if test="picUrl != null" >
         pic_url,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -203,6 +228,9 @@
       </if>
       <if test="picUrl != null" >
         #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=TINYINT},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -248,6 +276,9 @@
       <if test="record.picUrl != null" >
         pic_url = #{record.picUrl,jdbcType=VARCHAR},
       </if>
+      <if test="record.isCheck != null" >
+        is_check = #{record.isCheck,jdbcType=TINYINT},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -270,6 +301,7 @@
       clicktimes = #{record.clicktimes,jdbcType=INTEGER},
       repaytimes = #{record.repaytimes,jdbcType=INTEGER},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      is_check = #{record.isCheck,jdbcType=TINYINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -287,6 +319,7 @@
       clicktimes = #{record.clicktimes,jdbcType=INTEGER},
       repaytimes = #{record.repaytimes,jdbcType=INTEGER},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      is_check = #{record.isCheck,jdbcType=TINYINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -319,6 +352,9 @@
       <if test="picUrl != null" >
         pic_url = #{picUrl,jdbcType=VARCHAR},
       </if>
+      <if test="isCheck != null" >
+        is_check = #{isCheck,jdbcType=TINYINT},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -338,6 +374,7 @@
       clicktimes = #{clicktimes,jdbcType=INTEGER},
       repaytimes = #{repaytimes,jdbcType=INTEGER},
       pic_url = #{picUrl,jdbcType=VARCHAR},
+      is_check = #{isCheck,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -352,6 +389,7 @@
       clicktimes = #{clicktimes,jdbcType=INTEGER},
       repaytimes = #{repaytimes,jdbcType=INTEGER},
       pic_url = #{picUrl,jdbcType=VARCHAR},
+      is_check = #{isCheck,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
