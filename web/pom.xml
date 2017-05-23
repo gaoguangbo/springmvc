@@ -12,6 +12,16 @@
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
+            <groupId>com.guangbo</groupId>
+            <artifactId>dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guangbo</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
@@ -48,9 +58,7 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.3.0</version>
         </dependency>
-
     </dependencies>
-
     <build>
         <finalName>web</finalName>
         <plugins>
@@ -64,22 +72,31 @@
                     <uriEncoding>UTF-8</uriEncoding>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-war-plugin</artifactId>-->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.5.v20170502</version>
                 <!--<configuration>-->
-                    <!--<webResources>-->
-                        <!--<resource>-->
-                            <!--<directory>${project.basedir}/lib</directory>-->
-                            <!--<targetPath>WEB-INF/lib</targetPath>-->
-                            <!--<filtering>false</filtering>-->
-                            <!--<includes>-->
-                                <!--<include>**/*.jar</include>-->
-                            <!--</includes>-->
-                        <!--</resource>-->
-                    <!--</webResources>-->
+                    <!--<scanIntervalSeconds>20</scanIntervalSeconds>-->
                 <!--</configuration>-->
-                <!--<version>2.1.1</version>-->
+            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.mortbay.jetty</groupId>-->
+                <!--<artifactId>maven-jetty-plugin</artifactId>-->
+                <!--<version>6.1.26</version>-->
+                <!--<configuration>-->
+                    <!--<webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>-->
+                    <!--<scanIntervalSeconds>6</scanIntervalSeconds>-->
+                    <!--<contextPath>/abs-web</contextPath>-->
+                    <!--<connectors>-->
+                        <!--<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">-->
+                            <!--<port>9090</port>-->
+                            <!--<headerBufferSize>80000</headerBufferSize>-->
+                        <!--</connector>-->
+                    <!--</connectors>-->
+                    <!--<stopKey>stop</stopKey>-->
+                    <!--<stopPort>9099</stopPort>-->
+                <!--</configuration>-->
             <!--</plugin>-->
         </plugins>
     </build>
