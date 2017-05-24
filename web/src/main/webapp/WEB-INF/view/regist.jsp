@@ -15,7 +15,7 @@
     <meta property="wb:webmaster" content="1cdd3f856f5473a5">
     <link rel="shortcut icon" href="http://www.qyer.com/favicon.ico">
 
-    <script type="text/javascript"  src="../../js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript"  src="../../js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript">
         var flag1 = true;
         var flag2 = true;
@@ -31,7 +31,7 @@
             if (!isok) {
                 $(".message-box-email").html("");
                 $(".message-box-email").text("邮箱格式不正确！");
-                $(".message-box-email").style.color = 'red';
+                $(".message-box-email").css({ color: "red" })
                 flag1 = false;
                 return false;
             }
