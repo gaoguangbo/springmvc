@@ -91,6 +91,9 @@ public class NewsController {
         WebResult webResult = new WebResult();
         webResult.setCode("01");
         webResult.setMsg("失败");
+        if (newsInfo.getTypeId() == -1) {
+            newsInfo.setTypeId(null);
+        }
         if (null != pageNum) {
             webResult.setResult(newsOperateService.queryByPage(newsInfo, pageNum, pageSize));
         }else {

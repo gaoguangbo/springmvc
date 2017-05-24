@@ -23,7 +23,7 @@
     <script src="../../js/lib/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            syncnews();
+            syncnews(-1);
         });
     </script>
     <!--反馈 start-->
@@ -111,8 +111,8 @@
 
 
             <ul class="right">
-                <li class="tb-item"><span><script src=""></script></span></li>
-                <li class="tb-item"><a class="tb-link" href="javascript:;">lili</a></li>
+                <li class="tb-item"><span><script src="${user.icon}"></script></span></li>
+                <li class="tb-item"><a class="tb-link" href="javascript:;">${user.username}</a></li>
                 <li class="tb-item"><a class="tb-link" href="/admin">媒体号</a></li>
                 <li class="tb-item"><a class="tb-link"
                                        href=""
@@ -207,31 +207,31 @@
                                 class="channel-tag">推荐</span></a>
                     </li>
                     <li class="channel-item">
-                        <a class="item item_1 " href=""
+                        <a class="item item_1 " href="javascript:void(0);" onclick="syncnews(1)"
                            data-category="news_hot"><span class="channel-tag news_hot">热点</span></a>
                     </li>
                     <li class="channel-item">
-                        <a class="item item_2 " href=""
+                        <a class="item item_2 " href="javascript:void(0);" onclick="syncnews(3)"
                            data-category="news_society"><span class="channel-tag news_society">社会</span></a>
                     </li>
                     <li class="channel-item">
-                        <a class="item item_3 " href=""
+                        <a class="item item_3 " href="javascript:void(0);" onclick="syncnews(4)"
                            data-category="news_entertainment"><span class="channel-tag news_entertainment">娱乐</span></a>
                     </li>
                     <li class="channel-item">
-                        <a class="item item_4 " href=""
+                        <a class="item item_4 " href="javascript:void(0);" onclick="syncnews(5)"
                            data-category="news_tech"><span class="channel-tag news_tech">科技</span></a>
                     </li>
                     <li class="channel-item">
-                        <a class="item item_5 " href=""
+                        <a class="item item_5 " href="javascript:void(0);" onclick="syncnews(6)"
                            data-category="news_car"><span class="channel-tag news_car">汽车</span></a>
                     </li>
                     <li class="channel-item">
-                        <a class="item item_6 " href=""
+                        <a class="item item_6 " href="javascript:void(0);"
                            data-category="news_sports"><span class="channel-tag news_sports">体育</span></a>
                     </li>
                     <li class="channel-item">
-                        <a class="item item_7 " href=""
+                        <a class="item item_7 " href="javascript:void(0);"
                            data-category="news_finance"><span class="channel-tag news_finance">财经</span></a>
                     </li>
 
@@ -311,7 +311,7 @@
                 </p>
                 <div class="unread" data-node="unread" ga_event="click_feed_update"><span>您有未读新闻，点击查看</span></div>
                 <ul id="newsbox" data-node="listBox" class="listBox" scrollpagination="enabled">
-                        dfdfdfdf
+
                 </ul>
                 <a href="javascript:;" class="loadmore" data-node="loadMore" style="display: none;">正在为您加载更多...</a>
             </div>
@@ -358,7 +358,7 @@
                         11010802020116号</a>
                     <a href="http://a285.wangzhanyanshi.com/license/" class="icp" target="_blank">网络文化经营许可证</a>
                     <a href="http://a285.wangzhanyanshi.com/chengnuoshu/" target="_blank">跟帖评论自律管理承诺书 </a>
-                    <span>违法和不良信息举报：xxx@xxx.com</span>
+                    <span>违法和不良信息举报:xxx@xxx.com</span>
                     <span style="display:none">统计代码填到这里 </span>
 
                 </div>
@@ -468,13 +468,13 @@
     });
 </script>
 <script>
-    function syncnews() {
+    function syncnews(typeId) {
         var ul = $("#newsbox");
+        ul.attr("value", "");
         console.info(ul.html());
 
         var pageNum = $("#pageNum").val();
         var pageSize = $("#pageSize").val();
-        var typeId = $("#pageSize").val();
         var data = {
             pageNum: pageNum,
             pageSize: pageSize,

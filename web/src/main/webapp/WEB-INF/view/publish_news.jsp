@@ -114,13 +114,13 @@
                     <div class="information">
                         <a href="javascript:;" target="_blank" title="全部文章">
                             <div class="new_user_avatar">
-                                <img src="">
+                                <img src="${user.icon}">
                             </div>
                             <div class="new_user_info">
                                 <div class="new_user_type">
                                     <span class="user_type">普通会员</span>
                                 </div>
-                                <div class="new_user_name"><span>lili</span></div>
+                                <div class="new_user_name"><span>${user.username}</span></div>
                             </div>
                         </a>
                     </div>
@@ -131,7 +131,7 @@
                                 <span class="new_author">作者</span>
                             </li>
                             <li class="authors_list top"><a href="./e/space/?userid=12" target="_blank"
-                                                            title="lili的个人主页">lili</a>
+                                                            title="lili的个人主页">${user.username}</a>
                             </li>
                             <li class="new_logout">
                                 <i class=""></i>

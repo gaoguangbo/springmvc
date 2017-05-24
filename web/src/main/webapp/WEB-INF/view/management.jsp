@@ -75,13 +75,13 @@
 						<div class="information">
 							<a href="javascript:;" target="_blank" title="全部文章">
 								<div class="new_user_avatar">
-									<img src="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1">
+									<img src="${user.icon}">
 								</div>
 								<div class="new_user_info">
 									<div class="new_user_type">
 										<span class="user_type">普通会员</span>
 									</div>
-									<div class="new_user_name"><span>lili</span></div>
+									<div class="new_user_name"><span>${user.username}</span></div>
 								</div>
 							</a>
 						</div>

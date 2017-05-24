@@ -1,15 +1,22 @@
 package com.guangbo.controller;
 
+import com.guangbo.common.WebResult;
 import com.guangbo.dao.entity.UserInfo;
+import com.guangbo.service.IUserInfoService;
 import com.guangbo.service.RegistService;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,7 +26,10 @@ import java.util.List;
 @RequestMapping("/regist")
 public class RegistController {
     @Autowired
-    RegistService registService;
+    private  RegistService registService;
+    @Autowired
+    private IUserInfoService userInfoService;
+
     public  List<UserInfo> userInfos;
 
 //    public Logger logger = Logger.getLogger(RegistController.class);
@@ -70,6 +80,7 @@ public class RegistController {
         UserInfo curUserInfo = list.get(0);
         if(curUserInfo.getCode() == 1){
             request.getSession().setAttribute("userId",list.get(0).getUserId());
+            request.getSession().setAttribute("user",list.get(0));
             String msg = "登录成功！！！";
             model.addAttribute("msg",msg);
             model.addAttribute("userInfo",curUserInfo);
@@ -95,6 +106,35 @@ public class RegistController {
         }
         registService.updateByPrimaryKey(userInfo);
         return "index";
+    }
+
+    @RequestMapping("/useredit")
+    public Object userEdit(UserInfo userInfo, @RequestParam("file") MultipartFile file) {
+        WebResult result = new WebResult();
+        result.setCode("00");
+        result.setMsg("成功");
+        String uploadDir = "/Users/gaoguangbo/Documents/java/springmvc/web/src/main/webapp/imagesup";
+        String resDir = "../../imagesup/";
+        if(!file.isEmpty()){
+            try {
+                FileUtils.copyInputStreamToFile(file.getInputStream(), new File(uploadDir,
+                        file.getOriginalFilename()));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //头像地址
+        String iconStr = resDir  + file.getOriginalFilename();
+        userInfo.setIcon(iconStr);
+        int i = userInfoService.update(userInfo);
+        if (i == 0) {
+            result.setCode("01");
+            result.setMsg("失败");
+        }
+        return result;
     }
 
 }

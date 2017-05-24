@@ -48,7 +48,7 @@
 <div id="pagelet-header">
     <div class="shead">
         <div class="shead_wrap">
-            <a class="shead_logo" href="http://a285.wangzhanyanshi.com/">媒体号</a>
+            <a class="shead_logo" href="">媒体号</a>
             <div class="shead_status">
 
                 <span></span>
@@ -79,13 +79,13 @@
                     <div class="information">
                         <a href="javascript:;" target="_blank" title="全部文章">
                             <div class="new_user_avatar">
-                                <img src="http://a285.wangzhanyanshi.com/e/member/cp/">
+                                <img src="${user.icon}">
                             </div>
                             <div class="new_user_info">
                                 <div class="new_user_type">
                                     <span class="user_type">普通会员</span>
                                 </div>
-                                <div class="new_user_name"><span>lili</span></div>
+                                <div class="new_user_name"><span>${user.username}</span></div>
                             </div>
                         </a>
                     </div>
@@ -127,24 +127,10 @@
                 <!--<a href="#" class="menu_h2">管理图集</a> -->
             </div>
 
-            <!--<div class="menu_block">
-                <a class="menu_h1 menu_info"><i></i>会员空间</a>
-                <a href="/e/space/?userid=12" target="_blank" class="menu_h2  ">预览空间</a>
-
-                <a href="/e/member/mspace/SetSpace.php" class="menu_h2  ">设置空间</a>
-
-                <a href="/e/member/mspace/gbook.php" class="menu_h2  ">管理留言</a>
-
-
-
-            </div>
-           <div class="menu_block alone">
-            <a href="/e/member/msg/" class="menu_h1  menu_notice alone"><i></i>通知<em class="new-messages-num" style=""></em></a>
-            </div>-->
             <div class="menu_block">
                 <a class="menu_h1 menu_settings"><i></i>设置</a>
 
-                <a href="http://a285.wangzhanyanshi.com/e/member/EditInfo/"
+                <a href="/editUserInfo"
                    class="menu_h2  menu_account"><i></i>修改资料</a>
                 <a href="http://a285.wangzhanyanshi.com/e/member/EditInfo/EditSafeInfo.php" class="menu_h2 "><i></i>修改密码</a>
                 <a href="http://a285.wangzhanyanshi.com/e/member/my/" class="menu_h2 "><i></i>账号状态</a>
