@@ -40,6 +40,9 @@ public class NewsOperateServiceImpl implements INewsOperateService {
         if (record.getIsCheck() != null) {
             criteria.andIsCheckEqualTo(record.getIsCheck());
         }
+        if (record.getTypeId() != null) {
+            criteria.andTypeIdEqualTo(record.getTypeId());
+        }
         return newsInfoMapper.selectByExampleWithBLOBs(example);
     }
 
@@ -50,6 +53,12 @@ public class NewsOperateServiceImpl implements INewsOperateService {
     public PageInfoPO<NewsInfo> queryByPage(NewsInfo record, int startLimit, int endLimit) {
         NewsInfoExample example = new NewsInfoExample();
         NewsInfoExample.Criteria criteria = example.createCriteria();
+        if (record.getTypeId() != null) {
+            criteria.andTypeIdEqualTo(record.getTypeId());
+        }
+        if (record.getIsCheck() != null) {
+            criteria.andIsCheckEqualTo(record.getIsCheck());
+        }
         example.setPageNum(startLimit, endLimit);
         PageInfoPO<NewsInfo> res = new NewsInfoExample();
         res.setPageNum(startLimit, endLimit);
