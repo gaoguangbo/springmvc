@@ -35,4 +35,8 @@ public interface NewsInfoMapper {
     int updateByPrimaryKeyWithBLOBs(NewsInfo record);
 
     int updateByPrimaryKey(NewsInfo record);
+
+    int zan(NewsInfo record);
+
+    int deZan(NewsInfo record);
 }

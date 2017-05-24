@@ -188,7 +188,7 @@
 						<i class="sn" style="right:300px;">${item.createTime}</i>
 						<i class="sn" style="right:200px;">${item.clicktimes}</i>
 						<i class="sn" style="right:100px;"><c:if test="${item.isCheck == 0}">√</c:if><c:if test="${item.isCheck != 0}">✘</c:if></i>
-						<i class="sn"><a href="">修改</a> | <a href="" onclick="return confirm('确认要删除');">删除</a></i>
+						<i class="sn"><a href="/news/getNewsById?modify=true&news_id=${item.id}">修改</a> | <a href="" onclick="return confirm('确认要删除');">删除</a></i>
 					</div>
 				</div>
 			</c:forEach>

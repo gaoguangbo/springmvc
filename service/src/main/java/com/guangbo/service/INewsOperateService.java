@@ -10,5 +10,9 @@ public interface INewsOperateService extends IBaseService<NewsInfo> {
 
     void publish(NewsInfo record);
 
-    NewsInfo getNews(Integer news_jd);
+    NewsInfo getNews(Integer news_id);
+
+    void zan(Integer news_id);
+
+    public void zan(Integer news_id, boolean flag);
 }

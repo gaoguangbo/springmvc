@@ -4,9 +4,12 @@ import com.guangbo.common.WebResult;
 import com.guangbo.dao.entity.FenleiResult;
 import com.guangbo.dao.entity.NewsBack;
 import com.guangbo.dao.entity.NewsInfo;
+import com.guangbo.dao.entity.NewsType;
 import com.guangbo.pachong.newsClassify.GraphModel;
 import com.guangbo.service.INewsBackService;
 import com.guangbo.service.INewsOperateService;
+import com.guangbo.service.impl.NewsTypeServiceImpl;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,8 @@ public class NewsController {
     private INewsOperateService newsOperateService;
     @Autowired
     private INewsBackService newsBackService;
+    @Autowired
+    private NewsTypeServiceImpl newsTypeService;
 
     /**
      * 发布新闻
@@ -35,6 +40,21 @@ public class NewsController {
      */
     @RequestMapping(value = "/publish", produces = "application/json;charset=UTF-8")
     public String publishNews(NewsInfo newsInfo) {
+        if (newsInfo.getId() == null) {
+            newsOperateService.publish(newsInfo);
+        }else {//更新
+            newsOperateService.update(newsInfo);
+        }
+        return "index";
+    }
+
+    /**
+     * 修改新闻
+     * @param newsInfo
+     * @return
+     */
+    @RequestMapping(value = "/modify", produces = "application/json;charset=UTF-8")
+    public String modifyNews(NewsInfo newsInfo) {
         newsOperateService.publish(newsInfo);
         return "index";
     }
@@ -43,12 +63,18 @@ public class NewsController {
      * 通过主键查询新闻
      * @param news_id
      * @param model
+     * @
      * @return
      */
     @RequestMapping("/getNewsById")
-    public String getOneNews(Integer news_id, Model model) {
+    public String getOneNews(Integer news_id, Model model,Boolean modify) {
         NewsInfo news = newsOperateService.getNews(news_id);
         model.addAttribute("news", news);
+        if (modify != null && modify == true) {
+            List<NewsType> list = newsTypeService.query(new NewsType());
+            model.addAttribute("types", list);
+            return "publish_news";
+        }
         return "news_model";
     }
 
@@ -74,6 +100,33 @@ public class NewsController {
         webResult.setCode("00");
         webResult.setMsg("成功");
         return webResult;
+    }
+
+    /**
+     * 赞
+     * @param news_id
+     * @return
+     */
+
+    public Object zan(Integer news_id) {
+        newsOperateService.zan(news_id);
+        WebResult result = new WebResult();
+        result.setCode("00");
+        result.setMsg("成功");
+        return result;
+    }
+
+    /**
+     * 取消赞
+     * @param news_id
+     * @return
+     */
+    public Object deZan(Integer news_id) {
+        newsOperateService.zan(news_id,true);
+        WebResult result = new WebResult();
+        result.setCode("00");
+        result.setMsg("成功");
+        return result;
     }
 
     /**

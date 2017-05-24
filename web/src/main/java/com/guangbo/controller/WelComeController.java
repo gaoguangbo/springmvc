@@ -21,6 +21,11 @@ public class WelComeController {
         return "index";
     }
 
+    @RequestMapping("/admin")
+    public String admin(Model model) {
+        return "admin";
+    }
+
     @RequestMapping("/publish")
     public String publish(Model model) {
         List<NewsType> list = newsTypeService.query(new NewsType());

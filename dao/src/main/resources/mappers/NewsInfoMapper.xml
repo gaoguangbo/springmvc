@@ -393,4 +393,18 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="zan" parameterType="com.guangbo.dao.entity.NewsInfo" >
+    update news_info
+    set
+      clicktimes = clicktimes + 1,
+      create_time = now
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="deZan" parameterType="com.guangbo.dao.entity.NewsInfo" >
+    update news_info
+    set
+    clicktimes = clicktimes - 1,
+    create_time = now
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

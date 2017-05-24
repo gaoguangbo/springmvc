@@ -44,7 +44,7 @@ public class NewsOperateServiceImpl implements INewsOperateService {
     }
 
     public int update(NewsInfo record) {
-        return 0;
+        return newsInfoMapper.updateByPrimaryKeySelective(record);
     }
 
     public PageInfoPO<NewsInfo> queryByPage(NewsInfo record, int startLimit, int endLimit) {
@@ -64,5 +64,21 @@ public class NewsOperateServiceImpl implements INewsOperateService {
     public NewsInfo getNews(Integer news_id) {
         NewsInfo newsInfo = newsInfoMapper.selectByPrimaryKey(news_id);
         return newsInfo;
+    }
+
+    public void zan(Integer news_id) {
+        NewsInfo newsInfo = new NewsInfo();
+        newsInfo.setId(news_id);
+
+    }
+
+    public void zan(Integer news_id, boolean flag) {
+        if (flag == false) {
+            zan(news_id);
+            return;
+        }
+        NewsInfo newsInfo = new NewsInfo();
+        newsInfo.setId(news_id);
+        newsInfoMapper.deZan(newsInfo);
     }
 }

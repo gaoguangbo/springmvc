@@ -148,7 +148,7 @@
     <div class="wrap1 sclearfix">
         <div class="menu">
             <div class="menu_block">
-                <a href="../../e/member/cp" class="menu_h1 selected menu_main alone"><i></i>主页</a>
+                <a href="/index" class="menu_h1 selected menu_main alone"><i></i>主页</a>
             </div>
             <div class="menu_block">
                 <a class="menu_h1 menu_article"><i></i>文章管理</a>
@@ -175,7 +175,7 @@
             </div>
         </div>
         <div class="stage formbox">
-            <form name="add" method="POST" id="form1" action="/news/publish">
+            <form name="add" method="POST" id="form1" action="/news/publish" >
                 <div class="">
                     <div class="page_tabs sclearfix" style="border:none;border-bottom: 1px solid #d8dce4;">
                         <div class="page_tab selected"
@@ -183,11 +183,7 @@
                         </div>
                     </div>
                     <div class="page_content indexpage_content" id="pagelet-write">
-                        <input type=hidden value="MAddInfo" name=enews>
-                        <input type=hidden value="3" name=classid>
-                        <input name=id type=hidden id="id" value="0">
-                        <input type=hidden value="1494424312" name=filepass>
-                        <input name=mid type=hidden id="mid" value="1">
+                        <input name="id" type="hidden" id="id" value="${news.id}">
                         <div class="edit-cell">
                             <div class="edit-main front-cover">
                                 <label class="edit-label">网络新闻url</label>
@@ -207,7 +203,7 @@
                                 <div class="edit-input">
                                     <div class="front-cover-type">
                                         <div class="front-cover-item">
-                                            <input type="text" id ="authorId" name="authorId" >
+                                            <input type="text" id ="authorId" name="authorId" value="${news.authorId}" >
                                         </div>
                                     </div>
                                 </div>
@@ -221,10 +217,9 @@
                                         <div class="front-cover-item">
                                             <select id ="typeId" name="typeId">
                                                 <c:forEach items="${types}" var="item" varStatus="status">
-                                                    <option value="${item.id}">${item.name}</option>
+                                                    <option value="${item.id}" <c:if test="${news.typeId == item.id}" >selected</c:if>> ${item.name}</option>
                                                 </c:forEach>
                                             </select>
-                                            <input id="gettype" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +230,7 @@
                             <div class="edit-input">
                                 <div class="front-cover-type">
                                     <div class="front-cover-item">
-                                        <input type="text" id = "title" name="title"  size="42">
+                                        <input type="text" id = "title" name="title"  size="42" value="${news.title}">
                                     </div>
                                 </div>
                             </div>
@@ -246,19 +241,9 @@
                                 <div class="front-cover-type">
                                     <div class="front-cover-item">
                                         <form action="/upload" id="uploadForm" method="post" enctype="multipart/form-data">
-                                            <input type="file" id="file" name="file" size="45"/>
+                                            <input type="file" id="file" name="file" size="45" />
                                             <input type="button" onclick="upload_file()" value="确定" /></form>
-                                        <input type="text" id="picUrl" name="picUrl" value="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="edit-main front-cover">
-                            <label class="edit-label">内容简介</label>
-                            <div class="edit-input">
-                                <div class="front-cover-type">
-                                    <div class="front-cover-item">
-                                        <textarea name="smalltext" cols="60" rows="10" id="smalltext"></textarea>
+                                        <input type="text" id="picUrl" name="picUrl" value="${news.picUrl}">
                                     </div>
                                 </div>
                             </div>
@@ -268,13 +253,14 @@
                             <div class="">
                                 <div class="front-cover-type">
                                     <div class="front-cover-item" class="container" style="width:100%">
-                                        <textarea id="content" name="content" cols="60" rows="10" style="display:none;"></textarea>
+                                        <textarea id="content" name="content" cols="60" rows="10" style="display:none;" >${news.content}</textarea>
                                         <p><br></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="modify" id="modify" value="<c:if test='${not empty news.id}'>true</c:if>">
                     <input  class="signform_btn signbasic_submit" type="submit" value="提交">
                 </div>
             </form>

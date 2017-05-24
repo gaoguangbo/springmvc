@@ -101,7 +101,7 @@
                             <li class="new_logout">
                                 <i class=""></i>
                                 <a href="http://a285.wangzhanyanshi.com/e/member/doaction.php?enews=exit"
-                                   onclick="return confirm(&#39;确认要退出?&#39;);">退出</a>
+                                   onclick="return confirm('确认要退出');">退出</a>
                             </li>
                         </ul>
                     </div>
@@ -116,14 +116,14 @@
     <div class="wrap1 sclearfix">
         <div class="menu">
             <div class="menu_block">
-                <a href="http://a285.wangzhanyanshi.com/e/member/cp/" class="menu_h1  selected  menu_main alone"><i></i>主页</a>
+                <a href="/index" class="menu_h1  selected  menu_main alone"><i></i>主页</a>
             </div>
 
 
             <div class="menu_block">
                 <a class="menu_h1 menu_article"><i></i>文章管理</a>
-                <a href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1" class="menu_h2"><i></i>管理文章</a>
-                <a href="http://a285.wangzhanyanshi.com/e/DoInfo/ChangeClass.php?mid=1" class="menu_h2">发布文章</a>
+                <a href="/news/management" class="menu_h2"><i></i>管理文章</a>
+                <a href="/publish" class="menu_h2">发布文章</a>
                 <!--<a href="#" class="menu_h2">管理图集</a> -->
             </div>
 
@@ -193,7 +193,7 @@
                     <div class="indexpage_item" style="margin-top:-10px;display:none;">
                         <a href="http://a285.wangzhanyanshi.com/e/member/cp/#" target="_blank" ga=""><img
                                 src="./会员中心_files/3e40006e0d5428fb289" style="display: block; border-radius: 4px;"
-                                onload="this.style.display=&#39;block&#39;;" width="750" height="100"></a>
+                                onload="this.style.display='block'" width="750" height="100"></a>
                     </div>
                     <div class="indexpage_item">
                         <a href="http://a285.wangzhanyanshi.com/gonggao/2662.html" target="_blank">今日头条上线
