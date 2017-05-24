@@ -15,8 +15,12 @@
     <meta property="wb:webmaster" content="1cdd3f856f5473a5">
     <link rel="shortcut icon" href="http://www.qyer.com/favicon.ico">
 
-    <script type="text/javascript"  src="../../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript"  src="../../js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
+        var flag1 = true;
+        var flag2 = true;
+        var flag3 = true;
+        var flag4 = true;
 //        window.onload = function(){
         function checkEmail(){
             var email=$("#email").val();
@@ -27,6 +31,8 @@
             if (!isok) {
                 $(".message-box-email").html("");
                 $(".message-box-email").text("邮箱格式不正确！");
+                $(".message-box-email").style.color = 'red';
+                flag1 = false;
                 return false;
             }
 
@@ -36,7 +42,16 @@
                 data: {email:email},
                 dataType: "text",
                 success: function(data){
-                    console.info(data)
+                    var textColor = "";
+                    if(data == "该邮箱已经注册过"){
+                        textColor = "red";
+                        flag1 = false;
+                    }
+                    if(data == "该邮箱可用") {
+                        textColor = "green";
+                        flag1 = true ;
+                    }
+                    $(".message-box-email").css({ color: textColor });
                     $(".message-box-email").html("");
                     $(".message-box-email").text(data);
                 }
@@ -50,6 +65,16 @@
                 data: {userName:userName},
                 dataType: "text",
                 success: function(data){
+                    var textColor = "";
+                    if(data == "该用户名已经存在"){
+                        textColor = "red";
+                        flag2 = false;
+                    }
+                    if(data == "该用户名可用") {
+                        textColor = "green";
+                        flag2 = true;
+                    }
+                    $(".message-box-username").css({ color: textColor });
                     $(".message-box-username").html("");
                     $(".message-box-username").text(data);
                 }
@@ -57,32 +82,53 @@
         }
         function checkPassWord(){
             var password=$("#password").val();
-            if(password.length <= 6) {
+            var textColor = "";
+            if(password.length < 6) {
                 warnMsg = "密码太短，请设置长密码！！";
-                $(".message-box-password").html("");
-                $(".message-box-password").text(warnMsg);
+                flag3 = false;
+               textColor = "red";
             }
+            if(password.length >= 6) {
+                warnMsg = "密码可用";
+               textColor = "green";
+                flag3 = true;
+            }
+            $(".message-box-password").html("");
+            $(".message-box-password").text(warnMsg);
+            $(".message-box-password").css({ color: textColor});
         }
         function checkCurPassword(){
             var curpassword=$("#curpassword").val();
             var password = $("#password").val();
             var warnMsg = "";
-            if(curpassword === password){
-                warnMsg = "两次密码一致"
-            } else {
-                warnMsg = "两次密码不同，请重新输入"
+            var textColor = "";
+            if(curpassword == password){
+                warnMsg = "两次密码一致";
+                textColor = "green";
+                flag4 = true;
             }
+            if(curpassword != password) {
+                warnMsg = "两次密码不同，请重新输入";
+                flag4 = "false";
+                textColor = "red";
+            }
+            $(".message-box-curpassword").css({ color:textColor });
             $(".message-box-curpassword").html("");
             $(".message-box-curpassword").text(warnMsg);
+
         }
-//        }
+        function  check() {
+            if(flag1 && flag2 && flag3 && flag4) {
+                $("#registerForm").submit();
+            }
+        }
     </script>
 
     <link rel="stylesheet" href="../../regist_files/fe_frame_c9d3c38d17bac43a47d25114f17d1666.css">
 
     <link rel="stylesheet" href="../../regist_files/headfoot.css">
     <link rel="stylesheet" href="../../regist_files/register_447d86ef039c09fa092c4465c254b7c0.css">
-    <style type="text/css">.qui-loginFeedback { position:fixed; _position:absolute; z-index:99; top:120px; right:-248px; display:none;}.qui-loginFeedback .icon { position: relative; float:left; margin-right: -1px; width:40px; height:166px; background:url(//static.qyer.com/models/common/component/loginFeedback/icons_feedback.png) 0 0 no-repeat; cursor:pointer;}@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (max-moz-device-pixel-ratio: 2) {.qui-loginFeedback .icon {background:url(//static.qyer.com/models/common/component/loginFeedback/icons_feedback@2x.png) 0 0 no-repeat; background-size: 80px 166px;}}.qui-loginFeedback.js-current > .icon { background-position: -40px 0;}.qui-loginFeedback .cnt { float:left; width:246px; height:280px; border: 1px solid #ccc; border-radius: 0 4px 4px 4px; background-color:#FFF;}.qui-loginFeedback .cnt form { padding:10px; font-size:0;}.qui-loginFeedback .cnt textarea { width:214px; height:128px; padding:2px 5px; border:1px solid #ccc; font-size:12px;}.qui-loginFeedback .cnt .txt { padding:2px 5px; border:1px solid #ccc; font-size:12px; width: 214px; height: 24px;}.qui-loginFeedback .cnt .btn { float:right; margin-top:10px;}.qui-loginFeedback .label { margin-top: 6px; padding: 2px 0; line-height: 24px; font-size: 12px;}.qui-loginFeedback .help { position:relative; top:-1px; border:1px solid #ccc; border-top:none; background:#dcffe2; height:24px; line-height:26px; text-align:center;font-size:12px;}.qui-loginFeedback .help a { color: #3f9f5f;}</style><style type="text/css">.qui-select{position:relative;display:inline-block;width:75pt;height:30px;overflow:visible}.qui-select-disable>.titles{background-color:#eee!important;cursor:default!important}.qui-select .contents ul li,.qui-select .titles{font-size:14px;cursor:pointer;text-overflow:ellipsis}.qui-select .titles{background:url(http://fed.static.qyer.com/core/web/common/resource/ui/oldselect/icons.png) center right no-repeat #fff;border:1px solid silver;color:#636363;display:block;line-height:30px;padding:0 10px 0 5px;width:100%;height:100%;overflow:hidden}.qui-select .titles .title-text{background-position:0 -4px;margin-left:5px;white-space:nowrap}.qui-select .contents{background-color:#FFF;border:1px solid silver;box-shadow:0 1px 2px rgba(0,0,0,.1);display:none;line-height:38px;position:absolute;top:31px;width:180px;max-height:235px;overflow:auto;z-index:10}.qui-select .contents ul li:first-child{border-top:0 none}.qui-select .contents ul li{border-top:1px solid #EBEBEB;line-height:38px;white-space:nowrap;overflow:hidden}.qui-select .contents ul li:hover{background-color:#d9eed7}.qui-select .contents ul li a{padding-left:10px;color:#636363;text-decoration:none}.qui-tip{position:fixed;top:75pt;left:0;width:100%;text-align:center;display:none;z-index:1100}.qui-tip-box{display:inline-block;min-width:90pt;max-width:390px;padding:20px 30px;background-color:#fff;box-shadow:0 2px 7px rgba(0,0,0,.25);border:1px solid silver;text-align:left;font-size:18px;line-height:2pc}.qui-tip-text{display:block;position:relative;padding-left:34px}.qui-tip-text:before{content:'';position:absolute;left:0;top:4px;width:24px;height:24px;background:url(http://fed.static.qyer.com/core/web/common/resource/ui/oldtip/icons2.png) no-repeat #fff}.qui-tip-box-error .qui-tip-text:before{background-position:0 -5pc}.qui-tip-box-warning .qui-tip-text:before{background-position:0 -40px}</style></head>
+    <style type="text/css">.qui-loginFeedback { position:fixed; _position:absolute; z-index:99; top:120px; right:-248px; display:none;}.qui-loginFeedback .icon { position: relative; float:left; margin-right: -1px; width:40px; height:166px; background:url(//static.qyer.com/models/common/component/loginFeedback/icons_feedback.png) 0 0 no-repeat; cursor:pointer;}@media screen and (-webkit-min-device-pixel-ratio: 2), screen and ( max-moz-device-pixel-ratio: 2) {.qui-loginFeedback .icon {background:url(//static.qyer.com/models/common/component/loginFeedback/icons_feedback@2x.png) 0 0 no-repeat; background-size: 80px 166px;}}.qui-loginFeedback.js-current > .icon { background-position: -40px 0;}.qui-loginFeedback .cnt { float:left; width:246px; height:280px; border: 1px solid #ccc; border-radius: 0 4px 4px 4px; background-color:#FFF;}.qui-loginFeedback .cnt form { padding:10px; font-size:0;}.qui-loginFeedback .cnt textarea { width:214px; height:128px; padding:2px 5px; border:1px solid #ccc; font-size:12px;}.qui-loginFeedback .cnt .txt { padding:2px 5px; border:1px solid #ccc; font-size:12px; width: 214px; height: 24px;}.qui-loginFeedback .cnt .btn { float:right; margin-top:10px;}.qui-loginFeedback .label { margin-top: 6px; padding: 2px 0; line-height: 24px; font-size: 12px;}.qui-loginFeedback .help { position:relative; top:-1px; border:1px solid #ccc; border-top:none; background:#dcffe2; height:24px; line-height:26px; text-align:center;font-size:12px;}.qui-loginFeedback .help a { color: #3f9f5f;}</style><style type="text/css">.qui-select{position:relative;display:inline-block;width:75pt;height:30px;overflow:visible}.qui-select-disable>.titles{background-color:#eee!important;cursor:default!important}.qui-select .contents ul li,.qui-select .titles{font-size:14px;cursor:pointer;text-overflow:ellipsis}.qui-select .titles{background:url(http://fed.static.qyer.com/core/web/common/resource/ui/oldselect/icons.png) center right no-repeat #fff;border:1px solid silver;color:#636363;display:block;line-height:30px;padding:0 10px 0 5px;width:100%;height:100%;overflow:hidden}.qui-select .titles .title-text{background-position:0 -4px;margin-left:5px;white-space:nowrap}.qui-select .contents{background-color:#FFF;border:1px solid silver;box-shadow:0 1px 2px rgba(0,0,0,.1);display:none;line-height:38px;position:absolute;top:31px;width:180px;max-height:235px;overflow:auto;z-index:10}.qui-select .contents ul li:first-child{border-top:0 none}.qui-select .contents ul li{border-top:1px solid #EBEBEB;line-height:38px;white-space:nowrap;overflow:hidden}.qui-select .contents ul li:hover{background-color:#d9eed7}.qui-select .contents ul li a{padding-left:10px;color:#636363;text-decoration:none}.qui-tip{position:fixed;top:75pt;left:0;width:100%;text-align:center;display:none;z-index:1100}.qui-tip-box{display:inline-block;min-width:90pt;max-width:390px;padding:20px 30px;background-color:#fff;box-shadow:0 2px 7px rgba(0,0,0,.25);border:1px solid silver;text-align:left;font-size:18px;line-height:2pc}.qui-tip-text{display:block;position:relative;padding-left:34px}.qui-tip-text:before{content:'';position:absolute;left:0;top:4px;width:24px;height:24px;background:url(http://fed.static.qyer.com/core/web/common/resource/ui/oldtip/icons2.png) no-repeat #fff}.qui-tip-box-error .qui-tip-text:before{background-position:0 -5pc}.qui-tip-box-warning .qui-tip-text:before{background-position:0 -40px}</style></head>
 <body>
 
 <div class="login-container">
@@ -90,7 +136,7 @@
         <div class="section">
             <div class="qui-login-section section-register" style="display: block;">
                 <div class="qui-login-tabs">
-                    <a style="text-align; margin-left:80px;"><p >注册</p></a>
+                    <a style=" margin-left:80px;"><p >注册</p></a>
                 </div>
                 <div class="qui-login-form" style="display: block;">
                     <form id="registerForm" action="/regist/insertUserInfo" method="post">
@@ -113,9 +159,9 @@
                             <div class="message-box-curpassword"></div>
                         </div>
                         <div class="qui-login-input qui-login-btn">
-                            <input type="submit" class="ui_button btn_submit" value="注册" data-value="注册">
+                            <input type="button" id = "regist1" onclick = "check()" class="ui_button btn_submit" value="注册" data-value="注册">
                             <div class="message-box">
-                                <span class="fl">已有穷游账号？ <a class="change-login-type" href="login.jsp" data-page="login" data-type="account" data-bn-ipg="web-register-layer-login">登录</a></span>
+                                <span class="fl">已有问游账号？ <a class="change-login-type" href="/wel/login" data-page="login" data-type="account" data-bn-ipg="web-register-layer-login">登录</a></span>
                                 <span class="fr">同意<a href="http://www.qyer.com/htmlpages/member.html" target="_blank" data-bn-ipg="web-register-layer-clause">会员条款</a>和<a href="http://www.qyer.com/htmlpages/exemption.html" target="_blank" data-bn-ipg="web-register-layer-statement">免责声明</a></span>
                             </div>
                         </div>

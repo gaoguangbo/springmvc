@@ -470,14 +470,15 @@
 <script>
     function syncnews() {
         var ul = $("#newsbox");
-        var ohtml = ul.html();
         console.info(ul.html());
 
         var pageNum = $("#pageNum").val();
         var pageSize = $("#pageSize").val();
+        var typeId = $("#pageSize").val();
         var data = {
             pageNum: pageNum,
-            pageSize: pageSize
+            pageSize: pageSize,
+            typeId: typeId
         }
         $.ajax({
             url: "/news/getNews",

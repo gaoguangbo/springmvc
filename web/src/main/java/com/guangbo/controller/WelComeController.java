@@ -16,6 +16,7 @@ import java.util.List;
 public class WelComeController {
     @Autowired
     private NewsTypeServiceImpl newsTypeService;
+
     @RequestMapping("/index")
     public String index() {
         return "index";
@@ -32,4 +33,14 @@ public class WelComeController {
         model.addAttribute("types", list);
         return "publish_news";
     }
+
+    @RequestMapping("/regist")
+    public String regist() {
+        return "regist";
+    }
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 }
