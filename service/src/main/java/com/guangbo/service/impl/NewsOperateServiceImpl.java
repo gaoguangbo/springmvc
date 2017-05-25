@@ -78,6 +78,7 @@ public class NewsOperateServiceImpl implements INewsOperateService {
     public void zan(Integer news_id) {
         NewsInfo newsInfo = new NewsInfo();
         newsInfo.setId(news_id);
+        newsInfoMapper.zan(newsInfo);
 
     }
 

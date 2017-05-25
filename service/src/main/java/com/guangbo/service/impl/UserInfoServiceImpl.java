@@ -1,6 +1,7 @@
 package com.guangbo.service.impl;
 
 import com.guangbo.dao.entity.UserInfo;
+import com.guangbo.dao.entity.UserInfoExample;
 import com.guangbo.dao.mapper.UserInfoMapper;
 import com.guangbo.dao.po.PageInfoPO;
 import com.guangbo.service.IUserInfoService;
@@ -32,7 +33,15 @@ public class UserInfoServiceImpl implements IUserInfoService {
     public int update(UserInfo record) {
         return userInfoMapper.updateByPrimaryKeySelective(record);
     }
-
+    public int updatePassWord(int userId, String oldPassword, String newPassword) {
+        UserInfoExample example = new UserInfoExample();
+        UserInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andPasswordEqualTo(oldPassword);
+        criteria.andUserIdEqualTo(userId);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setPassword(newPassword);
+        return userInfoMapper.updateByExampleSelective(userInfo,example);
+    }
     public PageInfoPO<UserInfo> queryByPage(UserInfo record, int startLimit, int endLimit) {
         return null;
     }

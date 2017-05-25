@@ -105,8 +105,8 @@
                 </li>
                 <li class="tb-item"><a class="tb-link add-favorite" data-node="addToFavorites" ga_event="nav_pin"
                                        href="javascript:;" onclick="alert('请按Ctrl+D收藏');">添加到收藏夹</a></li>
-           <li>
-           </li>
+                <li>
+                </li>
             </ul>
 
 
@@ -165,7 +165,7 @@
             <div class="midbar-inner">
                 <div class="logo-box">
                     <a class="logo-link" href="" ga_event="nav_icon"><img class="logo"
-                                                                                                         src="../../source/logo.png"></a>
+                                                                          src="../../source/logo.png"></a>
                 </div>
                 <div class="search-box">
                     <form action="" method="post" data-node="searchForm"
@@ -492,11 +492,11 @@
                 var pageSize = result.pageSize;
                 var results = result.results;
                 var all = "";
-                for(var i =0;i<results.length;i++) {
+                for (var i = 0; i < results.length; i++) {
                     console.info(results[i]);
                     console.info(results[i].authorId)
 
-                    var nhtml = create_news(results[i].id,results[i].title,results[i].content,results[i].picUrl);
+                    var nhtml = create_news(results[i].id, results[i].title, results[i].content, results[i].picUrl, results[i].createTime);
                     all = all + nhtml;
 //                    ul.append(html);
 //                    console.info(html);
@@ -511,47 +511,72 @@
     }
 
 
-    function create_news(news_id,title,content,picurl) {
+    function create_news(news_id, title, content, picurl, createtime) {
 
-        var newli ='<li class="item clearfix" data-node="item" rel="loaded">'
-        +'<div class="item-inner">'
-        +'<div class="lbox left">'
-        +'<a href="/news/getNewsById?news_id='+ news_id +'" target="_blank">'
-        +'<img class="feedimg" src="'+picurl+'"'
-        +'onload="this.style.opacity=1;" style="opacity: 1;">'
-        +'</a>'
-        +'</div>'
-        +'<div class="rbox"><!--hold-->'
-        +'<div class="rbox-inner">'
-        +'<div class="title-box">'
-        +'<a ga_event="click_feed_newstitle" class="link title"'
-        +'href="/news/getNewsById?news_id='+ news_id +'" target="_blank" data-node="title">'
-        + title +'</a>'
-        +'</div>'
-        +'<div class="abstract">'
-        +'<a ga_event="click_feed_newsabstract" class="link"'
-        +'href="/news/getNewsById?news_id='+ news_id +'" target="_blank">'+content+'</a>'
-        +'</div>'
-        +'<div class="footer clearfix">'
-        +'<div class="left lfooter">'
-        +'<a class="lbtn source" href="javascript:;">&nbsp;</a>'
-        +'<span class="lbtn comment"></span>'
-        +'</div>'
-        +'<div class="right rfooter">'
-//        +'<span data-node="likeGroup" class="">'
-//        +'<a class="rbtn bury" href="javascript:;" title="踩"'
-//        +'onclick="makeRequest('/e/public/digg?classid=1&amp;id=2667&amp;dotop=1&amp;doajax=1&amp;ajaxarea=diggnum','EchoReturnedText','GET','');"></a>'
-//        +'<a class="rbtn digg" href="javascript:;" title="顶"'
-//        +'onclick="makeRequest('/e/public/digg?classid=1&amp;id=2667&amp;dotop=0&amp;doajax=1&amp;ajaxarea=diggnum','EchoReturnedText','GET','');"></a>'
-//        +'</span>'
-        +'</div>'
-        +'</div>'
-        +'</div>'
-        +'</div>'
-        +'</div>'
-        +'</li>';
+        var newli = '<li class="item clearfix" data-node="item" rel="loaded">'
+            + '<div class="item-inner">'
+            + '<div class="lbox left">'
+            + '<a href="/news/getNewsById?news_id=' + news_id + '" target="_blank">'
+            + '<img class="feedimg" src="' + picurl + '"'
+            + 'onload="this.style.opacity=1;" style="opacity: 1;">'
+            + '</a>'
+            + '</div>'
+            + '<div class="rbox"><!--hold-->'
+            + '<div class="rbox-inner">'
+            + '<div class="title-box">'
+            + '<a ga_event="click_feed_newstitle" class="link title"'
+            + 'href="/news/getNewsById?news_id=' + news_id + '" target="_blank" data-node="title">'
+            + title + '</a>'
+            + '</div>'
+            + '<div class="abstract">'
+            + '<a ga_event="click_feed_newsabstract" class="link"'
+            + 'href="/news/getNewsById?news_id=' + news_id + '" target="_blank">' + content + '</a>'
+            + '</div>'
+            + '<div class="footer clearfix">'
+            + '<div class="left lfooter">'
+            + '<a class="lbtn source" href="javascript:;">&nbsp;</a>'
+            + '<span class="lbtn comment"></span>'
+            + '<span class="lbtn time">' + createtime + '</span>'
+            + '</div>'
+            + '<div class="right rfooter">'
+            + '<span data-node="likeGroup" class="">'
+            + '<a class="rbtn bury" href="javascript:void(0);" onclick="zan(-1,'+news_id+')" title="踩"'
+            + '></a>'
+            + '<a class="rbtn digg" href="javascript:void(0);" onclick="zan(1,'+news_id+')" title="顶"'
+            + '></a>'
+            + '</span>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
+            + '</li>';
         return newli;
     }
+
+    function zan(type, newsId) {
+        var url = "";
+        if (type == -1) {
+            url = "/news/dezan";
+        } else if (type == 1) {
+            url = "/news/zan";
+        }
+        var data = {
+            newsId: newsId
+        }
+        $.ajax({
+            url: url,
+            data: data,
+            success: function (data) {
+                if (type == 1) {
+                    alert("已赞");
+                }else{
+                    alert("已取消");
+                }
+            }
+        });
+    }
+
 </script>
 
 

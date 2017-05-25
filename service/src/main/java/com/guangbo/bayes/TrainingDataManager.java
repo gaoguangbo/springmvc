@@ -16,7 +16,7 @@ public class TrainingDataManager
 {
     private String[] traningFileClassifications;//训练语料分类集合
     private File traningTextDir;//训练语料存放目录
-    private static String defaultPath = "/Users/muyawei/yuliao/SogouC.reduced/Reduced";
+    private static String defaultPath = "/Users/gaoguangbo/Downloads/SogouC.reduced/Reduced";
 
     public TrainingDataManager()
     {
@@ -43,8 +43,8 @@ public class TrainingDataManager
     public String[] getFilesPath(String classification)
     {
         File classDir = new File(traningTextDir.getPath() +File.separator +classification);
-        System.out.println(classDir.getAbsolutePath());
-        System.out.println(classDir.getName());
+//        System.out.println(classDir.getAbsolutePath());
+//        System.out.println(classDir.getName());
         String[] ret = classDir.list();
         for (int i = 0; i < ret.length; i++)
         {

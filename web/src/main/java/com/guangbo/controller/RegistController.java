@@ -137,4 +137,20 @@ public class RegistController {
         return result;
     }
 
+    @RequestMapping("/editpass")
+    @ResponseBody
+    public Object editpass(Integer userId,String oldpassword,String password,String repassword) {
+        WebResult result = new WebResult();
+        result.setCode("01");
+        result.setMsg("修改失败");
+        if (!password.equals(repassword)) {
+            result.setMsg("两次密码不一致");
+        }
+        if (oldpassword.equals(password)) {
+            result.setMsg("与老密码一致");
+        }
+        userInfoService.updatePassWord(userId,oldpassword,password);
+        return result;
+    }
+
 }

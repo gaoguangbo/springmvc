@@ -107,12 +107,13 @@ public class NewsController {
 
     /**
      * 赞
-     * @param news_id
+     * @param newsId
      * @return
      */
-
-    public Object zan(Integer news_id) {
-        newsOperateService.zan(news_id);
+    @RequestMapping("/zan")
+    @ResponseBody
+    public Object zan(Integer newsId) {
+        newsOperateService.zan(newsId);
         WebResult result = new WebResult();
         result.setCode("00");
         result.setMsg("成功");
@@ -121,11 +122,13 @@ public class NewsController {
 
     /**
      * 取消赞
-     * @param news_id
+     * @param newsId
      * @return
      */
-    public Object deZan(Integer news_id) {
-        newsOperateService.zan(news_id,true);
+    @RequestMapping("/dezan")
+    @ResponseBody
+    public Object deZan(Integer newsId) {
+        newsOperateService.zan(newsId,true);
         WebResult result = new WebResult();
         result.setCode("00");
         result.setMsg("成功");
@@ -140,7 +143,6 @@ public class NewsController {
     @RequestMapping("/getByUrl")
     @ResponseBody
     public Object geturl(String newsUrl) {
-//        String url = "http://finance.sina.com.cn/stock/s/2017-05-16/doc-ifyfeivp5752185.shtml";
         FenleiResult result = new FenleiResult();
         try {
             GraphModel graphModel = new GraphModel();

@@ -397,7 +397,7 @@
     update news_info
     set
       clicktimes = clicktimes + 1,
-      create_time = now
+      create_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="deZan" parameterType="com.guangbo.dao.entity.NewsInfo" >

@@ -1,6 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- saved from url=(0043)http://a285.wangzhanyanshi.com/e/member/cp/ -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0058)http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1 -->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,7 +11,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
     <link rel="stylesheet" type="text/css" href="../../css/common.css">
-    <title>会员中心</title>
+    <title>管理信息</title>
     <style type="text/css">
         #browser_err {
             display: none;
@@ -48,7 +49,7 @@
 <div id="pagelet-header">
     <div class="shead">
         <div class="shead_wrap">
-            <a class="shead_logo" href="">媒体号</a>
+            <a class="shead_logo" href="http://a285.wangzhanyanshi.com/">媒体号</a>
             <div class="shead_status">
 
                 <span></span>
@@ -101,7 +102,7 @@
                             <li class="new_logout">
                                 <i class=""></i>
                                 <a href="http://a285.wangzhanyanshi.com/e/member/doaction.php?enews=exit"
-                                   onclick="return confirm('确认要退出');">退出</a>
+                                   onclick="return confirm('确认要退出?');">退出</a>
                             </li>
                         </ul>
                     </div>
@@ -116,76 +117,78 @@
     <div class="wrap1 sclearfix">
         <div class="menu">
             <div class="menu_block">
-                <a href="/index" class="menu_h1  selected  menu_main alone"><i></i>主页</a>
+                <a href="http://a285.wangzhanyanshi.com/e/member/cp/" class="menu_h1  selected  menu_main alone"><i></i>主页</a>
             </div>
 
 
             <div class="menu_block">
                 <a class="menu_h1 menu_article"><i></i>文章管理</a>
-                <a href="/news/management" class="menu_h2"><i></i>管理文章</a>
-                <a href="/publish" class="menu_h2">发布文章</a>
+                <a href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1" class="menu_h2"><i></i>管理文章</a>
+                <a href="http://a285.wangzhanyanshi.com/e/DoInfo/ChangeClass.php?mid=1" class="menu_h2">发布文章</a>
                 <!--<a href="#" class="menu_h2">管理图集</a> -->
             </div>
 
             <div class="menu_block">
                 <a class="menu_h1 menu_settings"><i></i>设置</a>
 
-                <a href="/editUserInfo"
+                <a href="http://a285.wangzhanyanshi.com/e/member/EditInfo/"
                    class="menu_h2  menu_account"><i></i>修改资料</a>
-                <a href="/regist/editpass" class="menu_h2 "><i></i>修改密码</a>
+                <a href="http://a285.wangzhanyanshi.com/e/member/EditInfo/EditSafeInfo.php" class="menu_h2 "><i></i>修改密码</a>
                 <a href="http://a285.wangzhanyanshi.com/e/member/my/" class="menu_h2 "><i></i>账号状态</a>
+                <a href="http://a285.wangzhanyanshi.com/e/member/friend/" class="menu_h2 "><i></i>好友列表</a>
+                <a href="http://a285.wangzhanyanshi.com/e/memberconnect/ListBind.php" class="menu_h2 "><i></i>绑定外部登录</a>
+
             </div>
         </div>
         <div class="stage">
-            <div class="indexsum">
-                <a href="/publish" class="indexsum_add"
-                   ga="发表文章按钮$">
-                    <i></i>
-                    <span>发表文章</span>
-                </a>
-                <div class="indexsum_btns">
 
-                    <a class="indexsum_btn first">
-                        <b>3</b>
-                        <span>文章数量<em title="我发布的文章总数"></em></span>
-                    </a>
-                    <a class="indexsum_btn ">
-                        <b>0</b>
-                        <span>好友数量</span>
-                    </a>
-
-
-                    <a class="indexsum_btn">
-                        <b>1</b>
-                        <span>空间点击量<em title="我的空间点击量"></em></span>
-                    </a>
-
-
-                    <a class="indexsum_btn last">
-                        <b>11</b>
-                        <span>累计阅读量</span>
-                    </a>
-                </div>
-            </div>
             <div class="indexpage">
-                <div class="page_tabs sclearfix">
-                    <div class="page_tab selected">公告</div>
+                <div class="stage formbox">
+                    <form name=userinfoform method=post enctype="multipart/form-data" action="/regist/editpass">
+                        <div class="">
+                            <div class="page_tabs sclearfix" style="border:none;border-bottom: 1px solid #d8dce4;">
+                                <div class="page_tab selected" style="border:none;border-bottom: 2px solid #FF5F63;bottom:-1px;top:0;"></div>
+                            </div>
+                            <div class="page_content indexpage_content" id="pagelet-write">
+                                <input type="hidden" name="enews" value="EditSafeInfo">
+                                <div class="edit-cell">
+                                    <div class="edit-main front-cover">
+                                        <label class="edit-label">密码安全修改</label>
+                                        <div class="edit-input">
+                                            <div class="front-cover-type">
+                                                <div class="front-cover-item">lili</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <style>
+                                    #pagelet-write img{display: block;max-width: 128px;max-height: 128px;margin-bottom:6px;}
+                                </style>
+                                <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
+                                    <tbody><tr>
+                                        <td width="21%" height="25" bgcolor="#FFFFFF"> <div align="left">用户名 </div></td>
+                                        <td width="79%" height="25" bgcolor="#FFFFFF">${user.username}</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="25" bgcolor="#FFFFFF"> <div align="left">原密码</div></td>
+                                        <td height="25" bgcolor="#FFFFFF"> <input name="oldpassword" type="password" id="oldpassword" size="38" maxlength="20"></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="25" bgcolor="#FFFFFF"> <div align="left">新密码</div></td>
+                                        <td height="25" bgcolor="#FFFFFF"> <input name="password" type="password" id="password" size="38" maxlength="20"></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="25" bgcolor="#FFFFFF"> <div align="left">确认新密码</div></td>
+                                        <td height="25" bgcolor="#FFFFFF"> <input name="repassword" type="password" id="repassword" size="38" maxlength="20">
+                                            (不想修改请留空)</td>
+                                    </tr>
+                                    </tbody></table>
+                            </div>
+                            <input class="signform_btn signbasic_submit" type="submit" value="提交">
+                        </div>
+                    </form>
                 </div>
-                <div class="page_content indexpage_content" gap="公告">
 
-                    <div class="indexpage_item" style="margin-top:-10px;display:none;">
-                        <a href="http://a285.wangzhanyanshi.com/e/member/cp/#" target="_blank" ga=""><img
-                                src="./会员中心_files/3e40006e0d5428fb289" style="display: block; border-radius: 4px;"
-                                onload="this.style.display='block'" width="750" height="100"></a>
-                    </div>
-                    <div class="indexpage_item">
-                        <a href="http://a285.wangzhanyanshi.com/gonggao/2662.html" target="_blank">今日头条上线
-                            <span>new</span>
-                        </a>
-                        <i class="sn">2016-04-21</i>
-                    </div>
-
-                </div>
             </div>
         </div>
 
@@ -196,15 +199,18 @@
     <div class="sfoot">
         <div>
             <a href="mailto:mp@toutiao.com" class="sfoot_email">客服邮箱：xxx@xxx.com</a>|
-            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/member/cp/#" class="sfoot_selfservice">常见问题</a>
+            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1#"
+               class="sfoot_selfservice">常见问题</a>
         </div>
         <div>
-            <a target="_blank" class="sfoot_about" href="http://a285.wangzhanyanshi.com/e/member/cp/#">关于仿今日头条</a>|
-            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/member/cp/#" class="sfoot_agreement">用户协议</a>|
+            <a target="_blank" class="sfoot_about" href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1#">关于仿今日头条</a>|
+            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1#"
+               class="sfoot_agreement">用户协议</a>|
 
-            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/member/cp/#" class="sfoot_agreement">侵权投诉</a>|
+            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1#"
+               class="sfoot_agreement">侵权投诉</a>|
 
-            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/member/cp/#" class="sfoot_contact">联系我们</a>
+            <a target="_blank" href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1#" class="sfoot_contact">联系我们</a>
             &#169; 2016 仿今日头条 http://a285.wangzhanyanshi.com/
         </div>
     </div>
@@ -212,8 +218,6 @@
 
 <div id="wx-feedback"></div>
 <div id="backtop" onclick="backtop();">返回顶部</div>
-<!--  -->
-
 
 <!--[if lt IE 8 ]>
 <script type="text/javascript">
