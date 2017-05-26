@@ -34,7 +34,7 @@ public class ClassConditionalProbability
      */
     public static double calculatePxc(String x, String c)
     {
-        double ret = 0F;
+        double ret = 0;
         double Nxc = tdm.getCountContainKeyOfClassification(c, x);
         double Nc = tdm.getTrainingFileCountOfClassification(c);
         double V = tdm.getTraningClassifications().length;

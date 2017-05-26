@@ -27,57 +27,6 @@
             <artifactId>ansj_seg</artifactId>
             <version>0.9</version>
         </dependency>
-        <!--本地jar-->
-        <!--<dependency>-->
-            <!--<groupId>com.pac</groupId>-->
-            <!--<artifactId>ansj</artifactId>-->
-            <!--<version>1.3</version>-->
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${project.basedir}/lib/ansj_seg-1.3-min.jar</systemPath>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>com.pac</groupId>
-            <artifactId>filterbuildr</artifactId>
-            <version>1.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/filterbuilder.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.pac</groupId>
-            <artifactId>htmllexer</artifactId>
-            <version>1.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/htmllexer.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.pac</groupId>
-            <artifactId>htmlparser</artifactId>
-            <version>1.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/htmlparser.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.pac</groupId>
-            <artifactId>sitecapturer</artifactId>
-            <version>1.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/sitecapturer.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.pac</groupId>
-            <artifactId>thumbelina</artifactId>
-            <version>1.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/thumbelina.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.pac</groupId>
-            <artifactId>tree_split</artifactId>
-            <version>1.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/tree_split-1.2.jar</systemPath>
-        </dependency>
-
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>

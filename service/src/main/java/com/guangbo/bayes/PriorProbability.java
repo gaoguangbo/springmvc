@@ -22,7 +22,7 @@ public class PriorProbability
      */
     public static float calculatePc(String c)
     {
-        float ret = 0F;
+        float ret = 0;
         float Nc = tdm.getTrainingFileCountOfClassification(c);
         float N = tdm.getTrainingFileCount();
         ret = Nc / N;

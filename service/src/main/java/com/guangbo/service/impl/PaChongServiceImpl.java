@@ -1,18 +1,16 @@
 package com.guangbo.service.impl;
-
 import com.guangbo.service.IPaChongService;
-
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
-
-import org.jsoup.Jsoup;
+import java.util.List;
+import org.ansj.domain.Term;
+import org.ansj.splitWord.analysis.ToAnalysis;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 /**
  * Created by gaoguangbo on 2017/5/16.
  */
@@ -108,7 +106,8 @@ public class PaChongServiceImpl implements IPaChongService {
         pw.close();
     }
 
-//    public static void main(String[] args) {
-//        getTextMes();
-//    }
+    public static void main(String[] args) {
+        List<Term> word = ToAnalysis.parse("个别地区违法违规举债担保时有发生");
+        System.out.println(word);
+    }
 }
