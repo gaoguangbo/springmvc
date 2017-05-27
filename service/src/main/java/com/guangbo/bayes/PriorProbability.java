@@ -20,11 +20,11 @@ public class PriorProbability
      * @param c 给定的分类
      * @return 给定条件下的先验概率
      */
-    public static float calculatePc(String c)
+    public static double calculatePc(String c)
     {
-        float ret = 0;
-        float Nc = tdm.getTrainingFileCountOfClassification(c);
-        float N = tdm.getTrainingFileCount();
+        double ret = 0;
+        double Nc = tdm.getTrainingFileCountOfClassification(c);
+        double N = tdm.getTrainingFileCount();
         ret = Nc / N;
         return ret;
     }
