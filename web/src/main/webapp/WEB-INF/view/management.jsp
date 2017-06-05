@@ -95,7 +95,7 @@
 								</li>
 								<li class="new_logout">
 									<i class=""></i>
-									<a href="http://a285.wangzhanyanshi.com/e/member/doaction.php?enews=exit" onclick="return confirm(&#39;确认要退出?&#39;);">退出</a> 
+									<a href="http://a285.wangzhanyanshi.com/e/member/doaction.php?enews=exit" onclick="return confirm('确认要退出?');">退出</a>
 								</li>
 							</ul>
 						</div>

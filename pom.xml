@@ -87,7 +87,6 @@
             <artifactId>jsoup</artifactId>
             <version>1.9.2</version>
         </dependency>
-
         <!-- jsp servlet jar end -->
         <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
         <dependency>

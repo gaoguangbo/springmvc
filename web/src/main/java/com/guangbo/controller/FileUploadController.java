@@ -31,8 +31,8 @@ public class FileUploadController {
     @RequestMapping(value = "/upload")
     @ResponseBody
     public String upload(MultipartFile file, ModelMap model) {
-        String uploadDir = "/Users/gaoguangbo/Documents/java/springmvc/web/src/main/webapp/imagesup";
-        String resDir = "../../imagesup/";
+        String uploadDir = "/Users/gaoguangbo/java/newsclassify/web/src/main/webapp/imagesup";
+        String resDir = "../../imagesup";
         if(!file.isEmpty()){
             try {
                 //这里将上传得到的文件保存至 d:\\temp\\file 目录
