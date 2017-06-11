@@ -1,6 +1,6 @@
 package com.guangbo.dao.entity;
 
-import com.guangbo.dao.po.PageInfoPO;
+import com.guangbo.dao.vo.PageInfoPO;
 
 import java.util.ArrayList;
 import java.util.Date;

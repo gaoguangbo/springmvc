@@ -1,6 +1,6 @@
 package com.guangbo.service;
 
-import com.guangbo.dao.po.PageInfoPO;
+import com.guangbo.dao.vo.PageInfoPO;
 
 import java.util.List;
 

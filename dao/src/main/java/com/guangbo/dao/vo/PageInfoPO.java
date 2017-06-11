@@ -1,4 +1,4 @@
-package com.guangbo.dao.po;
+package com.guangbo.dao.vo;
 
 import java.util.List;
 

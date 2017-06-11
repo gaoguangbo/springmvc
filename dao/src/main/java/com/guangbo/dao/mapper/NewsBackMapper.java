@@ -4,7 +4,6 @@ import com.guangbo.dao.entity.NewsBack;
 import com.guangbo.dao.entity.NewsBackExample;
 import java.util.List;
 
-import com.guangbo.dao.po.PageInfoPO;
 import org.apache.ibatis.annotations.Param;
 
 public interface NewsBackMapper {

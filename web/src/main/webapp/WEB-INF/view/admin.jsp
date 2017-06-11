@@ -157,7 +157,7 @@
 
                     <a class="indexsum_btn">
                         <b>1</b>
-                        <span>空间点击量<em title="我的空间点击量"></em></span>
+                        <span>粉丝数量<em title="我的空间点击量"></em></span>
                     </a>
 
 

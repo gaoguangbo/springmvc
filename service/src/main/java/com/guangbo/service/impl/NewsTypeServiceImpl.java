@@ -3,7 +3,7 @@ package com.guangbo.service.impl;
 import com.guangbo.dao.entity.NewsType;
 import com.guangbo.dao.entity.NewsTypeExample;
 import com.guangbo.dao.mapper.NewsTypeMapper;
-import com.guangbo.dao.po.PageInfoPO;
+import com.guangbo.dao.vo.PageInfoPO;
 import com.guangbo.service.INewsTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

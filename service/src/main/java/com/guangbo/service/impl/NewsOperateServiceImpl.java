@@ -1,11 +1,9 @@
 package com.guangbo.service.impl;
 
-import com.guangbo.dao.entity.NewsBackExample;
 import com.guangbo.dao.entity.NewsInfo;
 import com.guangbo.dao.entity.NewsInfoExample;
-import com.guangbo.dao.mapper.NewsBackMapper;
 import com.guangbo.dao.mapper.NewsInfoMapper;
-import com.guangbo.dao.po.PageInfoPO;
+import com.guangbo.dao.vo.PageInfoPO;
 import com.guangbo.service.INewsOperateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

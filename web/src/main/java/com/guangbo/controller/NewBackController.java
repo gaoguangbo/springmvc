@@ -2,7 +2,7 @@ package com.guangbo.controller;
 
 import com.guangbo.common.WebResult;
 import com.guangbo.dao.entity.NewsBack;
-import com.guangbo.dao.po.PageInfoPO;
+import com.guangbo.dao.vo.PageInfoPO;
 import com.guangbo.service.INewsBackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

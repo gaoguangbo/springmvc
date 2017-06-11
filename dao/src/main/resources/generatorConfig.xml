@@ -53,7 +53,8 @@
 		  <!--<table tableName="news_type" domainObjectName="NewsType"/>-->
 		  <!--<table tableName="news_info" domainObjectName="NewsInfo"/>-->
 		<!--<table tableName="news_back" domainObjectName="NewsBack" />-->
-		<table tableName="user_info" domainObjectName="UserInfo"/>
+		<!--<table tableName="user_info" domainObjectName="UserInfo"/>-->
+		<table tableName="news_check" domainObjectName="NewsCheck"/>
 	</context>
 
 </generatorConfiguration> 
