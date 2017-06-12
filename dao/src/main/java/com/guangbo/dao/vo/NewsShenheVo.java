@@ -153,6 +153,7 @@ public class NewsShenheVo {
     public NewsShenheVo() {
     }
     public NewsShenheVo(NewsInfo newsInfo) {
+        this.id = newsInfo.getId();
         this.authorId = newsInfo.getAuthorId();
         this.title = newsInfo.getTitle();
         this.typeId = newsInfo.getTypeId();
@@ -162,8 +163,10 @@ public class NewsShenheVo {
         this.repaytimes = newsInfo.getRepaytimes();
         this.picUrl = newsInfo.getPicUrl();
         this.content = newsInfo.getContent();
+        this.createTime = newsInfo.getCreateTime();
     }
     public NewsShenheVo(NewsInfo newsInfo, NewsCheck newsCheck) {
+        this.id = newsInfo.getId();
         this.authorId = newsInfo.getAuthorId();
         this.title = newsInfo.getTitle();
         this.typeId = newsInfo.getTypeId();
@@ -171,6 +174,7 @@ public class NewsShenheVo {
         this.keywords = newsInfo.getKeywords();
         this.clicktimes = newsInfo.getClicktimes();
         this.repaytimes = newsInfo.getRepaytimes();
+        this.createTime = newsInfo.getCreateTime();
         this.picUrl = newsInfo.getPicUrl();
         this.isCheck = newsCheck.getIsCheck();
         this.content = newsInfo.getContent();

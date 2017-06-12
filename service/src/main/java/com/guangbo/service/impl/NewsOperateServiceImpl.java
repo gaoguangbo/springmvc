@@ -57,6 +57,9 @@ public class NewsOperateServiceImpl implements INewsOperateService {
         if (record.getIsCheck() != null) {
             criteria.andIsCheckEqualTo(record.getIsCheck());
         }
+        if (record.getTitle() != null) {
+            criteria.andTitleLike("%"+record.getTitle()+"%");
+        }
         example.setPageNum(startLimit, endLimit);
         PageInfoPO<NewsInfo> res = new NewsInfoExample();
         res.setPageNum(startLimit, endLimit);

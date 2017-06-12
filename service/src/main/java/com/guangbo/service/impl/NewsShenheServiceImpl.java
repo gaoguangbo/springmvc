@@ -8,6 +8,7 @@ import com.guangbo.service.INewsShenheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,9 +30,10 @@ public class NewsShenheServiceImpl implements INewsShenheService {
     public List<NewsCheck> queryByNewsIds(List<Integer> ids) {
         NewsCheckExample example = new NewsCheckExample();
         NewsCheckExample.Criteria criteria = example.createCriteria();
-        if (ids != null) {
-            criteria.andNewsIdIn(ids);
+        if (ids == null || ids.size() == 0) {
+            return new ArrayList<NewsCheck>();
         }
+            criteria.andNewsIdIn(ids);
         List<NewsCheck> newsChecks = newsCheckMapper.selectByExample(example);
         return newsChecks;
     }

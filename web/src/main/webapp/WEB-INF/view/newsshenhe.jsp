@@ -31,6 +31,7 @@
             color: #4D7CD9;
         }
     </style>
+
 </head>
 
 <body class="body_index" youdao="bind">
@@ -138,8 +139,7 @@
             </div>
         </div>
         <div class="stage">
-
-            <div class="indexpage">
+            <div class="indexpage" >
                 <div class="page_tabs sclearfix" style="border:none;border-bottom: 1px solid #d8dce4;">
                     <div class="page_tab selected"
                          style="border:none;border-bottom: 2px solid #FF5F63;top:0;bottom:-1px;">管理文章
@@ -151,11 +151,8 @@
                     <div class="page_tab " style="border:none;"><a
                             href="http://a285.wangzhanyanshi.com/e/DoInfo/ListInfo.php?mid=1&amp;ecmscheck=1"
                             style="font-size:16px;position:relative;top: 7px;">待审核</a></div>
-                    <div class="page_tab " style="border:none;"><select id="newstype" name="newstype">
+                    <div class="page_tab " style="border:none;"><select id="newsType" name="newsType" onchange="genxin()">
                         <option value="0" selected>全部</option>
-                        <c:forEach items="types" var="item">
-                            <%--<option value="${item.id}" >${item.name}</option>--%>
-                        </c:forEach>
                     </select></div>
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
                            style="float:right;width:450px;margin-top:10px;">
@@ -166,11 +163,11 @@
 
                             <td width="75%">
                                 <div align="right">&nbsp;搜索：
-                                    <input name="keyboard" type="text" id="keyboard" value="">
+                                    <input name="title" id="title" type="text" id="keyboard" value="">
                                     <select name="show">
                                         <option value="0" selected="">标题</option>
                                     </select>
-                                    <input type="submit" name="Submit2" value="搜索">
+                                    <input type="button" onclick="genxin()" value="搜索">
                                     <input name="sear" type="hidden" id="sear" value="1">
                                     <input name="mid" type="hidden" value="1">
                                     <input name="ecmscheck" type="hidden" id="ecmscheck" value="0">
@@ -184,47 +181,55 @@
                 <div class="page_content indexpage_content" style="padding: 22px 0;margin-top: 0px;">
                     <div class="indexpage_item">
                         <i class="sn" style="left:0;">标题</i>
-                        <i class="sn" style="left:300px;">发布时间</i>
-                        <i class="sn" style="right:200px;">点击数</i>
-                        <i class="sn" style="right:200px;">审核建议</i>
-                        <i class="sn" style="right:100px;">审核</i>
+                        <i class="sn" style="right:550px;">发布时间</i>
+                        <i class="sn" style="right:400px;">点击数</i>
+                        <i class="sn" style="right:250px;">审核建议</i>
+                        <i class="sn" style="right:110px;">审核</i>
                         <i class="sn">操作</i>
                     </div>
                 </div>
-                <c:forEach items="${articles}" var="item" varStatus="status">
-                    <div class="page_content indexpage_content">
-                        <div class="indexpage_item">
-                            <a href="" target="_blank">${item.title}</a>
-                            <i class="sn" style="right:300px;">${item.createTime}</i>
-                            <i class="sn" style="right:200px;">${item.clicktimes}</i>
-                            <i class="sn" style="right:200px;"><input type="text" value="审核建议"></i>
+                <div id="CBox">
 
-                                <%--<i class="sn"><a href="/news/getNewsById?modify=true&news_id=${item.id}">修改</a> | <a href="" onclick="return confirm('确认要删除');">删除</a></i>--%>
-                        </div>
-                    </div>
-                </c:forEach>
+                </div>
+                <%--<c:forEach items="${articles}" var="item" varStatus="status">--%>
+                    <%--<div class="page_content indexpage_content">--%>
+                        <%--<div class="indexpage_item">--%>
+                            <%--<a href="" target="_blank">${item.title}</a>--%>
+                            <%--<i class="sn" style="right:300px;">${item.createTime}</i>--%>
+                            <%--<i class="sn" style="right:200px;">${item.clicktimes}</i>--%>
+                            <%--<i class="sn" style="right:200px;"><input type="text" value="审核建议"></i>--%>
+                            <%--<i class="sn" style="right:200px;">--%>
+                                <%--<input type="radio" name="isCheck" value="0">通过--%>
+                                <%--<input type="radio" name="isCheck" value="1" checked>不通过--%>
+                            <%--</i>--%>
+
+                                <%--&lt;%&ndash;<i class="sn"><a href="/news/getNewsById?modify=true&news_id=${item.id}">修改</a> | <a href="" onclick="return confirm('确认要删除');">删除</a></i>&ndash;%&gt;--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</c:forEach>--%>
             </div>
         </div>
 
     </div>
     <div class="dialog feedback_dialog on"
-         style="position: absolute;top: 200px;right: 350px;width: 450px;height: 300px;" id="C_shenhe">
+         style="position: absolute;top: 200px;right: 350px;width: 450px;height: 300px;display: none" id="C_shenhe">
         <div class="dialog-header">
             <h3>意见反馈</h3>
         </div>
-        <div class="dialog-inner" data-node="inner" >
+        <div class="dialog-inner" data-node="inner">
             <div class="feedback_panel">
                 <form>
                     <ul>
                         <li>您的审核意见</p>
                             <div class="input-group">
-                                <textarea style="height:200px;width: 400px" name="lytext" class="content"
+                                <textarea id ="textcopy" style="height:200px;width: 400px" name="lytext" class="content"
                                           maxlength="140" placeholder="请填写您的审核意见"></textarea>
                             </div>
                         </li>
                         <li>
                             <div class="input-group">
-                                <input type="button" name="Submit" class="submit-btn" onclick="show_hide('C_shenhe',false)" value="确定">
+                                <input type="button" name="Submit" class="submit-btn"
+                                       onclick="show_hide('C_shenhe',false)" value="确定">
                             </div>
                         </li>
                     </ul>
@@ -259,16 +264,114 @@
 <div id="backtop" onclick="backtop();">返回顶部</div>
 <!--  -->
 <script type="text/javascript">
+    var curInput;
     function show_hide(target, flag) {
         if (flag) {
-            $("#"+target).show();
+            $("#" + target).show();
+            $("#textcopy").val($(curInput).val());
         } else {
-            $("#"+target).hide();
+            alert($("#textcopy").val());
+            $(curInput).val($("#textcopy").val());
+            alert($(curInput).val());
+            $("#" + target).hide();
         }
     }
+    function _show(target,input) {
+        curInput = input;
+        show_hide(target,true);
+    }
+    function addNews(title, createTime, clicktimes, flag, checkContent) {
+        if(checkContent == "" || checkContent== null || checkContent == undefined) {
+            checkContent = "请输入审核建议";
+        }
+        var html =
+            '<div class="page_content indexpage_content">'
+            + '<div class="indexpage_item">'
+            + '<a href="" target="_blank">' + title + '</a>'
+            + '<i class="sn" style="right:550px;">' + createTime + '</i>'
+            + '<i class="sn" style="right:400px;">' + clicktimes + '</i>'
+            + '<i class="sn" style="right:200px;"><input type="text" onclick="_show(\'C_shenhe\',this)" value="' + checkContent + '"></i>'
+            + '<i class="sn" style="right:80px;">';
+        var radio = '';
+        if (flag == 0) {
+            radio = '<input type="radio" name="isCheck" value="0" checked>通过'
+                + '<input type="radio" name="isCheck" value="1" >不通过';
+        } else {
+            radio = '<input type="radio" name="isCheck" value="0" >通过'
+                + '<input type="radio" name="isCheck" value="1" checked>不通过';
+        }
+        html = html + radio
+            + '</i>'
+            + '<i class="sn" style="right:0px;"><input type="button" value="保存"></i>'
+            + '</div>'
+            + '</div>';
+        $("#CBox").append(html);
+    }
 
+    function genxin() {
+        var data={
+            type:$("#newsType").val(),
+            title:$("#title").val()
+        };
+        $.ajax({
+            url:"/newsshenhe/get",
+            data: data,
+            success: function (data) {
+                $("#CBox").empty();
+                for(var i = 0;i<data.length;i++) {
+                    addNews(data[i].title,unixToTime(data[i].createTime,true),data[i].clicktimes,data[i].isCheck,data[i].checkContent);
+                }
+                console.info(data);
+            }
+
+        });
+
+    }
+
+    function getTypes() {
+        $.ajax({
+            url:"/type/get",
+            success: function (data) {
+                for(var i = 0;i<data.length;i++) {
+                    $("#newsType").append('<option value="'+data[i].id +'" >'+data[i].name+'</option>"');
+                }
+            }
+
+        });
+    }
+    /**
+     * 时间戳转 北京 时间
+     * @param unixTime
+     * @param isFull
+     * @param timeZone
+     * @returns {string}
+     */
+    function unixToTime(unixTime, isFull, timeZone) {
+        if (typeof (timeZone) == 'number')
+        {
+            unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
+        }
+        var time = new Date(unixTime);
+        var ymdhis = "";
+        ymdhis += time.getUTCFullYear() + "-";
+        ymdhis += (time.getUTCMonth()+1) + "-";
+        ymdhis += time.getUTCDate();
+        if (isFull === true)
+        {
+            ymdhis += " " + time.getUTCHours() + ":";
+            ymdhis += time.getUTCMinutes() + ":";
+            ymdhis += time.getUTCSeconds();
+        }
+        return ymdhis;
+    }
 </script>
-
+<script type="text/javascript">
+    $(function () {
+        getTypes();
+        genxin();
+        var time  = unixToTime(1325347200);
+    });
+</script>
 <!--[if lt IE 8 ]>
 <script type="text/javascript">
     $(function () {
@@ -283,6 +386,7 @@
         }, 20);
     });
 </script>
+
 <![endif]-->
 
 </body>
